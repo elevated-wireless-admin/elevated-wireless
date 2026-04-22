@@ -1,0 +1,346 @@
+"use client";
+
+import { tokens as t } from "@/lib/tokens";
+import { Label, Reveal } from "./primitives";
+
+const PARAS = [
+  "For thirty years, wireless has been sold the same way. Price. Coverage. Speed. Three national carriers chasing a commodity. The affluent professional paying $1,000 a year for service gets the exact same thing as everyone else — a signal.",
+  "Every other premium category has corrected this. Credit cards became membership. Fitness became community. Coffee became identity. Travel became experience. Connectivity is the last holdout.",
+  "Luxury and affinity wireless is the next category — and Elevated is the company building it. Operator and platform, both. We run our own premium wireless service to prove the category is real. And we license the platform to brands that belong in it.",
+];
+
+export function Category() {
+  return (
+    <section
+      id="category"
+      data-screen-label="03 Category"
+      className="ew-pad-md"
+      style={{
+        background: t.paper,
+        color: t.ink,
+        padding: "140px 56px",
+        borderBottom: `1px solid ${t.line}`,
+      }}
+    >
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Category We&apos;re Building</Label>
+        <h2
+          style={{
+            fontFamily: t.sansDisplay,
+            fontSize: "clamp(42px, 5.6vw, 72px)",
+            lineHeight: 1.02,
+            fontWeight: 500,
+            letterSpacing: "-0.025em",
+            margin: "0 0 72px",
+            maxWidth: 1100,
+          }}
+        >
+          Wireless is about to get the upgrade every other category has had.
+        </h2>
+
+        <div
+          className="ew-stack-md"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 40,
+          }}
+        >
+          {PARAS.map((p, i) => (
+            <Reveal key={i} delay={i * 80}>
+              <div style={{ borderTop: `1px solid ${t.line}`, paddingTop: 20 }}>
+                <div
+                  style={{
+                    fontFamily: t.mono,
+                    fontSize: 10,
+                    letterSpacing: "0.12em",
+                    opacity: 0.5,
+                    marginBottom: 14,
+                  }}
+                >
+                  0{i + 1}
+                </div>
+                <p style={{ fontSize: 16, lineHeight: 1.6, margin: 0 }}>{p}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Pull-quote / "The Math" panel */}
+        <div
+          style={{
+            marginTop: 120,
+            background: t.navy,
+            color: t.paper,
+            position: "relative",
+            overflow: "hidden",
+            padding: "72px 72px 80px",
+          }}
+        >
+          <div style={{ position: "absolute", top: 20, left: 24 }}>
+            <Label style={{ color: t.metal, opacity: 0.7 }}>Fig. 01 · The Math</Label>
+          </div>
+          <div style={{ position: "absolute", top: 20, right: 24 }}>
+            <Label style={{ color: t.metal, opacity: 0.5 }}>Commodity → Category</Label>
+          </div>
+
+          <div
+            className="ew-stack-md"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr auto 1fr auto 1fr",
+              alignItems: "center",
+              gap: 0,
+              marginTop: 40,
+              marginBottom: 56,
+            }}
+          >
+            {/* Cell 1 — Three carriers */}
+            <div style={{ textAlign: "center" }}>
+              <div style={{ display: "flex", justifyContent: "center", gap: 10, marginBottom: 18 }}>
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    style={{
+                      width: 28,
+                      height: 56,
+                      border: `1px solid ${t.metal}`,
+                      background: i === 0 ? t.metal : "transparent",
+                      opacity: i === 0 ? 1 : 0.55,
+                    }}
+                  />
+                ))}
+              </div>
+              <div
+                style={{
+                  fontFamily: t.sansDisplay,
+                  fontSize: 88,
+                  fontWeight: 500,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1,
+                  color: t.metalBright,
+                }}
+              >
+                3
+              </div>
+              <div
+                style={{
+                  marginTop: 10,
+                  fontFamily: t.mono,
+                  fontSize: 11,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: t.metal,
+                  opacity: 0.85,
+                }}
+              >
+                National carriers
+              </div>
+            </div>
+
+            <div
+              style={{
+                fontFamily: t.sansDisplay,
+                fontSize: 36,
+                fontWeight: 300,
+                color: t.metal,
+                opacity: 0.55,
+                padding: "0 28px",
+              }}
+            >
+              ×
+            </div>
+
+            {/* Cell 2 — Hundreds of audiences */}
+            <div style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(10, 1fr)",
+                  gap: 4,
+                  width: 200,
+                  margin: "0 auto 18px",
+                }}
+              >
+                {Array.from({ length: 40 }).map((_, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      width: "100%",
+                      aspectRatio: "1 / 1",
+                      background: t.metal,
+                      opacity: 0.25 + (i % 7) * 0.1,
+                    }}
+                  />
+                ))}
+              </div>
+              <div
+                style={{
+                  fontFamily: t.sansDisplay,
+                  fontSize: 88,
+                  fontWeight: 500,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1,
+                  color: t.metalBright,
+                }}
+              >
+                100s
+              </div>
+              <div
+                style={{
+                  marginTop: 10,
+                  fontFamily: t.mono,
+                  fontSize: 11,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: t.metal,
+                  opacity: 0.85,
+                }}
+              >
+                Premium audiences
+              </div>
+            </div>
+
+            {/* Equals */}
+            <div
+              style={{
+                padding: "0 28px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 4,
+              }}
+            >
+              <div style={{ height: 2, width: 28, background: t.metal, opacity: 0.6 }} />
+              <div style={{ height: 2, width: 28, background: t.metal, opacity: 0.6 }} />
+            </div>
+
+            {/* Cell 3 — Hub-and-spoke + ∞ */}
+            <div style={{ textAlign: "center" }}>
+              <svg
+                width="200"
+                height="110"
+                viewBox="0 0 200 110"
+                style={{ margin: "0 auto 18px", display: "block", overflow: "visible" }}
+              >
+                {(() => {
+                  const cx = 100;
+                  const cy = 55;
+                  const r = 44;
+                  const nodes = Array.from({ length: 6 }).map((_, i) => {
+                    const a = (Math.PI * 2 * i) / 6 - Math.PI / 2;
+                    return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r };
+                  });
+                  return (
+                    <g>
+                      {nodes.map((n, i) => (
+                        <line
+                          key={`l${i}`}
+                          x1={cx}
+                          y1={cy}
+                          x2={n.x}
+                          y2={n.y}
+                          stroke={t.metal}
+                          strokeWidth="0.75"
+                          opacity="0.55"
+                        />
+                      ))}
+                      {nodes.map((n, i) => (
+                        <g key={`n${i}`}>
+                          <circle cx={n.x} cy={n.y} r="6" fill="none" stroke={t.metal} strokeWidth="1" />
+                          <circle cx={n.x} cy={n.y} r="2.5" fill={t.metalBright} opacity="0.8" />
+                        </g>
+                      ))}
+                      <circle cx={cx} cy={cy} r="11" fill={t.metalBright} />
+                      <circle
+                        cx={cx}
+                        cy={cy}
+                        r="17"
+                        fill="none"
+                        stroke={t.metalBright}
+                        strokeWidth="0.5"
+                        opacity="0.4"
+                      />
+                    </g>
+                  );
+                })()}
+              </svg>
+              <div
+                style={{
+                  fontFamily: t.sansDisplay,
+                  fontSize: 88,
+                  fontWeight: 500,
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1,
+                  color: t.metalBright,
+                }}
+              >
+                ∞
+              </div>
+              <div
+                style={{
+                  marginTop: 10,
+                  fontFamily: t.mono,
+                  fontSize: 11,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  color: t.metal,
+                  opacity: 0.85,
+                }}
+              >
+                Branded relationships
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              borderTop: `1px solid ${t.navyMid}`,
+              paddingTop: 48,
+              display: "grid",
+              gridTemplateColumns: "auto 1fr",
+              gap: 40,
+              alignItems: "start",
+              maxWidth: 1100,
+              margin: "0 auto",
+            }}
+          >
+            <div
+              style={{
+                fontFamily: t.sansDisplay,
+                fontSize: 120,
+                lineHeight: 0.7,
+                color: t.metalBright,
+                fontWeight: 300,
+                paddingTop: 8,
+              }}
+            >
+              &ldquo;
+            </div>
+            <div
+              style={{
+                fontFamily: t.sansDisplay,
+                fontSize: "clamp(30px, 3.6vw, 46px)",
+                lineHeight: 1.18,
+                fontWeight: 400,
+                letterSpacing: "-0.018em",
+                fontStyle: "italic",
+                color: t.paper,
+                maxWidth: 900,
+              }}
+            >
+              Three national carriers.
+              <br />
+              Hundreds of premium audiences.
+              <br />
+              <span style={{ color: t.metalBright }}>
+                The future of wireless is branded
+                <br />
+                relationships with meaning.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
