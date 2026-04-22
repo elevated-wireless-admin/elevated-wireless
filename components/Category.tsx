@@ -67,7 +67,7 @@ export function Category() {
         </div>
 
         {/* Pull-quote / "The Math" panel */}
-        <div
+        <Reveal
           style={{
             marginTop: 120,
             background: t.navy,
@@ -75,6 +75,7 @@ export function Category() {
             position: "relative",
             overflow: "hidden",
             padding: "72px 72px 80px",
+            display: "block",
           }}
         >
           <div style={{ position: "absolute", top: 20, left: 24 }}>
@@ -85,7 +86,7 @@ export function Category() {
           </div>
 
           <div
-            className="ew-stack-md"
+            className="ew-stack-md ew-stagger"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr auto 1fr auto 1fr",
@@ -112,11 +113,11 @@ export function Category() {
                 ))}
               </div>
               <div
+                className="ew-math-num"
                 style={{
                   fontFamily: t.sansDisplay,
                   fontSize: 88,
                   fontWeight: 500,
-                  letterSpacing: "-0.04em",
                   lineHeight: 1,
                   color: t.metalBright,
                 }}
@@ -154,6 +155,7 @@ export function Category() {
             {/* Cell 2 — Hundreds of audiences */}
             <div style={{ textAlign: "center" }}>
               <div
+                className="ew-dots"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(10, 1fr)",
@@ -162,24 +164,28 @@ export function Category() {
                   margin: "0 auto 18px",
                 }}
               >
-                {Array.from({ length: 40 }).map((_, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      width: "100%",
-                      aspectRatio: "1 / 1",
-                      background: t.metal,
-                      opacity: 0.25 + (i % 7) * 0.1,
-                    }}
-                  />
-                ))}
+                {Array.from({ length: 40 }).map((_, i) => {
+                  const dotOpacity = 0.25 + (i % 7) * 0.1;
+                  return (
+                    <div
+                      key={i}
+                      style={{
+                        width: "100%",
+                        aspectRatio: "1 / 1",
+                        background: t.metal,
+                        ["--dot-opacity" as string]: String(dotOpacity),
+                        transitionDelay: `${(i % 10) * 25 + Math.floor(i / 10) * 60}ms`,
+                      } as React.CSSProperties}
+                    />
+                  );
+                })}
               </div>
               <div
+                className="ew-math-num"
                 style={{
                   fontFamily: t.sansDisplay,
                   fontSize: 88,
                   fontWeight: 500,
-                  letterSpacing: "-0.04em",
                   lineHeight: 1,
                   color: t.metalBright,
                 }}
@@ -265,11 +271,11 @@ export function Category() {
                 })()}
               </svg>
               <div
+                className="ew-math-num"
                 style={{
                   fontFamily: t.sansDisplay,
                   fontSize: 88,
                   fontWeight: 500,
-                  letterSpacing: "-0.04em",
                   lineHeight: 1,
                   color: t.metalBright,
                 }}
@@ -292,54 +298,62 @@ export function Category() {
             </div>
           </div>
 
-          <div
-            style={{
-              borderTop: `1px solid ${t.navyMid}`,
-              paddingTop: 48,
-              display: "grid",
-              gridTemplateColumns: "auto 1fr",
-              gap: 40,
-              alignItems: "start",
-              maxWidth: 1100,
-              margin: "0 auto",
-            }}
-          >
+          <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto" }}>
+            <div
+              className="ew-rule-draw"
+              aria-hidden="true"
+              style={{
+                height: 1,
+                width: "100%",
+                background: t.navyMid,
+                marginBottom: 48,
+              }}
+            />
             <div
               style={{
-                fontFamily: t.sansDisplay,
-                fontSize: 120,
-                lineHeight: 0.7,
-                color: t.metalBright,
-                fontWeight: 300,
-                paddingTop: 8,
+                display: "grid",
+                gridTemplateColumns: "auto 1fr",
+                gap: 40,
+                alignItems: "start",
               }}
             >
-              &ldquo;
-            </div>
-            <div
-              style={{
-                fontFamily: t.sansDisplay,
-                fontSize: "clamp(30px, 3.6vw, 46px)",
-                lineHeight: 1.18,
-                fontWeight: 400,
-                letterSpacing: "-0.018em",
-                fontStyle: "italic",
-                color: t.paper,
-                maxWidth: 900,
-              }}
-            >
-              Three national carriers.
-              <br />
-              Hundreds of premium audiences.
-              <br />
-              <span style={{ color: t.metalBright }}>
-                The future of wireless is branded
+              <div
+                style={{
+                  fontFamily: t.sansDisplay,
+                  fontSize: 120,
+                  lineHeight: 0.7,
+                  color: t.metalBright,
+                  fontWeight: 300,
+                  paddingTop: 8,
+                }}
+              >
+                &ldquo;
+              </div>
+              <div
+                style={{
+                  fontFamily: t.sansDisplay,
+                  fontSize: "clamp(30px, 3.6vw, 46px)",
+                  lineHeight: 1.18,
+                  fontWeight: 400,
+                  letterSpacing: "-0.018em",
+                  fontStyle: "italic",
+                  color: t.paper,
+                  maxWidth: 900,
+                }}
+              >
+                Three national carriers.
                 <br />
-                relationships with meaning.
-              </span>
+                Hundreds of premium audiences.
+                <br />
+                <span style={{ color: t.metalBright }}>
+                  The future of wireless is branded
+                  <br />
+                  relationships with meaning.
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
