@@ -11,7 +11,6 @@ const COLS = [
     items: [
       "partnerships@getelevatedwireless.com",
       "invest@getelevatedwireless.com",
-      "press@getelevatedwireless.com",
     ],
   },
 ];
@@ -84,7 +83,7 @@ export function Footer() {
         >
           <div>© 2026 Elevated Wireless Inc. · Delaware C-Corp</div>
           <div style={{ fontStyle: "italic", opacity: 0.85 }}>
-            Cellular service provided on the Verizon 5G network via Reach Mobile.
+            Cellular service provided on the Verizon 5G network via MVNO partner.
           </div>
           <div style={{ display: "flex", gap: 18 }}>
             <span>Privacy</span>

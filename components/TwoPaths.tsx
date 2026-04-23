@@ -68,7 +68,7 @@ export function TwoPaths() {
                 benefits, and early-member pricing.
               </p>
               <a
-                href="mailto:waitlist@getelevatedwireless.com?subject=Elevated%20Wireless%20Waitlist"
+                href="mailto:partnerships@getelevatedwireless.com?subject=Elevated%20Wireless%20Waitlist"
                 style={{
                   padding: "14px 22px",
                   background: t.metalBright,
