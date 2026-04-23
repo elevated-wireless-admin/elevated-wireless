@@ -76,7 +76,7 @@ const ADVISORS: Person[] = [
   {
     n: "Rich Goldstein",
     r: "IP & Patent Counsel",
-    img: "/img/team/rich-goldstein.jpg",
+    img: "/img/team/rich-goldstein.png",
     hero: "30 years in patent law.",
     c: "Guides startups and inventors in optimizing IP for valuation and exit. Selected by the American Bar Association to author its consumer guide on obtaining a patent.",
   },
