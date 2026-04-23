@@ -9,7 +9,7 @@ const LANES: Lane[] = [
   {
     n: "4a",
     title: "Monthly sessions with world-class operators",
-    body: "Jay Abraham — the most-quoted marketer alive, personal advisor to some of the largest brands in history — runs monthly sessions exclusively for Elevated members. Additional hosts curated across business, AI, health, and performance. Members-only. Not resold anywhere else.",
+    body: "Learn directly from Jay Abraham — the most-quoted marketer alive, Jon Benson a legendary copywriter now focused on AI, or Dr. Daniel Amen — America's brain doctor, just to name a few. Additional hosts curated across business, AI, health, and performance. Monthly sessions exclusively for Elevated members.",
     img: "portrait · operator",
     src: "/img/access-4a.jpg",
   },

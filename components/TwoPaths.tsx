@@ -28,114 +28,59 @@ export function TwoPaths() {
               margin: 0,
             }}
           >
-            Two ways in.
+            For brands.
           </h2>
         </div>
 
-        <div
-          className="ew-stack-md"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1px 1fr",
-            gap: 0,
-          }}
-        >
-          <Reveal>
-            <div
+        <Reveal>
+          <div
+            style={{
+              maxWidth: 640,
+              margin: "0 auto",
+              padding: "40px 0",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              gap: 24,
+            }}
+          >
+            <Label style={{ color: t.metal, opacity: 0.7 }}>For Brands</Label>
+            <h3
               style={{
-                padding: "40px 56px 40px 0",
-                display: "flex",
-                flexDirection: "column",
-                gap: 24,
+                fontFamily: t.sansDisplay,
+                fontSize: "clamp(36px, 4vw, 48px)",
+                fontWeight: 500,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.05,
+                margin: 0,
               }}
             >
-              <Label style={{ color: t.metal, opacity: 0.7 }}>For Members</Label>
-              <h3
-                style={{
-                  fontFamily: t.sansDisplay,
-                  fontSize: "clamp(36px, 4vw, 48px)",
-                  fontWeight: 500,
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.05,
-                  margin: 0,
-                }}
-              >
-                Become a member.
-              </h3>
-              <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.82, margin: 0, maxWidth: 480 }}>
-                Elevated Wireless is launching our D2C service in 2026 — premium cellular plus full
-                access to the member network. Join the waitlist and we&apos;ll walk you through access,
-                benefits, and early-member pricing.
-              </p>
-              <a
-                href="mailto:partnerships@getelevatedwireless.com?subject=Elevated%20Wireless%20Waitlist"
-                style={{
-                  padding: "14px 22px",
-                  background: t.metalBright,
-                  color: t.navy,
-                  fontFamily: t.mono,
-                  fontSize: 12,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  fontWeight: 600,
-                  alignSelf: "flex-start",
-                  marginTop: 8,
-                }}
-              >
-                Join the waitlist →
-              </a>
-            </div>
-          </Reveal>
-
-          <div style={{ background: t.navyMid, width: 1 }} />
-
-          <Reveal delay={120}>
-            <div
+              Launch your own brand.
+            </h3>
+            <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.82, margin: 0, maxWidth: 520 }}>
+              Own an audience worth something? Turn it into a wireless company — turnkey.
+              Royalty-based, equity-aligned, operationally handled. Two-week onboarding once
+              terms are signed.
+            </p>
+            <a
+              href="mailto:partnerships@getelevatedwireless.com?subject=Partner%20Briefing"
               style={{
-                padding: "40px 0 40px 56px",
-                display: "flex",
-                flexDirection: "column",
-                gap: 24,
+                padding: "14px 22px",
+                background: "transparent",
+                color: t.paper,
+                border: `1px solid ${t.metal}`,
+                fontFamily: t.mono,
+                fontSize: 12,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                marginTop: 8,
               }}
             >
-              <Label style={{ color: t.metal, opacity: 0.7 }}>For Brands</Label>
-              <h3
-                style={{
-                  fontFamily: t.sansDisplay,
-                  fontSize: "clamp(36px, 4vw, 48px)",
-                  fontWeight: 500,
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.05,
-                  margin: 0,
-                }}
-              >
-                Launch your own brand.
-              </h3>
-              <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.82, margin: 0, maxWidth: 480 }}>
-                Own an audience worth something? Turn it into a wireless company — turnkey.
-                Royalty-based, equity-aligned, operationally handled. Two-week onboarding once
-                terms are signed.
-              </p>
-              <a
-                href="mailto:partnerships@getelevatedwireless.com?subject=Partner%20Briefing"
-                style={{
-                  padding: "14px 22px",
-                  background: "transparent",
-                  color: t.paper,
-                  border: `1px solid ${t.metal}`,
-                  fontFamily: t.mono,
-                  fontSize: 12,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  alignSelf: "flex-start",
-                  marginTop: 8,
-                }}
-              >
-                Request a partner briefing →
-              </a>
-            </div>
-          </Reveal>
-        </div>
+              Request a partner briefing →
+            </a>
+          </div>
+        </Reveal>
 
         <div
           style={{

@@ -8,7 +8,6 @@ type Engine = {
   name: string;
   body: string;
   who: string;
-  cta?: string;
 };
 
 const ENGINES: Engine[] = [
@@ -35,13 +34,6 @@ const ENGINES: Engine[] = [
     name: "Services",
     body: "Marketing, data operations, and AI-native strategy — sold to other MVNOs, telecom operators, and enterprise wireless programs. The shortest sales cycle in the business.",
     who: "Operators with network but no team",
-  },
-  {
-    n: "05",
-    name: "Elevated Wireless (D2C)",
-    body: "Our own luxury wireless service. Premium cellular on Verizon 5G. Full access to the Elevated members' network — mastermind calls, curated experiences, AI advisor bench, partner perks.",
-    who: "Affluent professionals · Launching 2026",
-    cta: "Join the waitlist →",
   },
 ];
 
@@ -80,14 +72,14 @@ export function Engines() {
                 margin: 0,
               }}
             >
-              Five engines.
+              Four engines.
               <br />
               One platform.
             </h2>
           </div>
           <p style={{ fontSize: 17, lineHeight: 1.6, opacity: 0.75, paddingBottom: 12, margin: 0 }}>
-            Elevated earns on five distinct paths — from turnkey brand licensing to our own
-            luxury wireless service. Each engine compounds the next.
+            Elevated earns on four distinct paths — from turnkey brand licensing to enterprise
+            benefits programs. Each engine compounds the next.
           </p>
         </div>
 
@@ -100,115 +92,77 @@ export function Engines() {
             borderLeft: `1px solid ${t.line}`,
           }}
         >
-          {ENGINES.map((e, i) => {
-            const isFeatured = i === 4;
-            return (
-              <Reveal
-                key={e.n}
-                delay={i * 60}
+          {ENGINES.map((e, i) => (
+            <Reveal
+              key={e.n}
+              delay={i * 60}
+              style={{
+                gridColumn: "span 6",
+                display: "block",
+              }}
+            >
+              <div
                 style={{
-                  gridColumn: isFeatured ? "span 12" : "span 6",
-                  display: "block",
+                  borderRight: `1px solid ${t.line}`,
+                  borderBottom: `1px solid ${t.line}`,
+                  padding: 40,
+                  background: "transparent",
+                  color: t.ink,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 16,
+                  minHeight: 280,
+                  height: "100%",
                 }}
               >
+                <Label style={{ opacity: 0.55, color: t.ink }}>Engine {e.n}</Label>
+                <h3
+                  style={{
+                    fontFamily: t.sansDisplay,
+                    fontSize: 28,
+                    fontWeight: 500,
+                    letterSpacing: "-0.018em",
+                    lineHeight: 1.1,
+                    margin: "0 0 4px",
+                    color: t.ink,
+                  }}
+                >
+                  {e.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 14.5,
+                    lineHeight: 1.6,
+                    margin: 0,
+                    opacity: 0.78,
+                  }}
+                >
+                  {e.body}
+                </p>
                 <div
                   style={{
-                    borderRight: `1px solid ${t.line}`,
-                    borderBottom: `1px solid ${t.line}`,
-                    padding: 40,
-                    background: isFeatured ? t.navy : "transparent",
-                    color: isFeatured ? t.paper : t.ink,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 16,
-                    minHeight: 280,
-                    height: "100%",
+                    marginTop: "auto",
+                    paddingTop: 14,
+                    borderTop: `1px solid ${t.line}`,
                   }}
                 >
                   <div
                     style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
+                      fontFamily: t.mono,
+                      fontSize: 11.5,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      opacity: 0.55,
+                      marginBottom: 4,
                     }}
                   >
-                    <Label style={{ opacity: 0.55, color: isFeatured ? t.metal : t.ink }}>
-                      Engine {e.n}
-                    </Label>
-                    {isFeatured && (
-                      <Label style={{ color: t.metalBright, letterSpacing: "0.22em" }}>
-                        Launching 2026
-                      </Label>
-                    )}
+                    For
                   </div>
-                  <h3
-                    style={{
-                      fontFamily: t.sansDisplay,
-                      fontSize: isFeatured ? 40 : 28,
-                      fontWeight: 500,
-                      letterSpacing: "-0.018em",
-                      lineHeight: 1.1,
-                      margin: "0 0 4px",
-                      color: isFeatured ? t.metalBright : t.ink,
-                    }}
-                  >
-                    {e.name}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: 14.5,
-                      lineHeight: 1.6,
-                      margin: 0,
-                      opacity: isFeatured ? 0.85 : 0.78,
-                      maxWidth: isFeatured ? 720 : "none",
-                    }}
-                  >
-                    {e.body}
-                  </p>
-                  <div
-                    style={{
-                      marginTop: "auto",
-                      paddingTop: 14,
-                      borderTop: `1px solid ${isFeatured ? t.navyMid : t.line}`,
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontFamily: t.mono,
-                        fontSize: 11.5,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                        opacity: 0.55,
-                        marginBottom: 4,
-                      }}
-                    >
-                      For
-                    </div>
-                    <div style={{ fontSize: 13, opacity: 0.85 }}>{e.who}</div>
-                  </div>
-                  {e.cta && (
-                    <a
-                      href="#partner"
-                      style={{
-                        marginTop: 8,
-                        padding: "12px 20px",
-                        background: t.metalBright,
-                        color: t.navy,
-                        fontFamily: t.mono,
-                        fontSize: 11.5,
-                        letterSpacing: "0.2em",
-                        textTransform: "uppercase",
-                        fontWeight: 600,
-                        alignSelf: "flex-start",
-                      }}
-                    >
-                      {e.cta}
-                    </a>
-                  )}
+                  <div style={{ fontSize: 13, opacity: 0.85 }}>{e.who}</div>
                 </div>
-              </Reveal>
-            );
-          })}
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

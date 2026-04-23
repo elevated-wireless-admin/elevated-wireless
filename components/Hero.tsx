@@ -48,20 +48,20 @@ export function Hero() {
       </div>
 
       <Reveal>
-        <div style={{ maxWidth: 1200, display: "flex", flexDirection: "column", gap: 28 }}>
+        <div style={{ maxWidth: 1400, display: "flex", flexDirection: "column", gap: 32 }}>
           <Label style={{ color: t.metalBright, letterSpacing: "0.34em" }}>
-            The Future Has Arrived
+            The Next Evolution of Wireless
           </Label>
 
           <h1
             style={{
               fontFamily: t.sansDisplay,
-              fontSize: "clamp(56px, 8vw, 112px)",
-              lineHeight: 0.98,
+              fontSize: "clamp(88px, 11.2vw, 156px)",
+              lineHeight: 0.94,
               fontWeight: 500,
-              letterSpacing: "-0.028em",
+              letterSpacing: "-0.03em",
               margin: 0,
-              maxWidth: 1100,
+              maxWidth: 1340,
             }}
           >
             The next evolution
@@ -80,29 +80,29 @@ export function Hero() {
             }}
           >
             Elevated delivers premium cellular on Verizon 5G — and direct access to some of the
-            most sought-after people, ideas, and experiences on earth. Join us or leverage our
-            platform to launch your own branded wireless offer.
+            most sought-after people, ideas, and experiences on earth. Leverage our platform to
+            launch your own branded wireless offering.
           </p>
 
-          <div style={{ display: "flex", marginTop: 24 }}>
+          <div style={{ display: "flex", gap: 14, marginTop: 20 }}>
             <a
               href="#category"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: 14,
-                padding: "18px 32px",
+                gap: 10,
+                padding: "16px 26px",
                 background: t.metalBright,
                 color: t.navy,
                 fontFamily: t.mono,
-                fontSize: 13,
+                fontSize: 12,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 fontWeight: 600,
               }}
             >
               Learn More
-              <span aria-hidden="true" style={{ fontSize: 16, lineHeight: 1, fontWeight: 500 }}>↓</span>
+              <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1, fontWeight: 500 }}>↓</span>
             </a>
           </div>
         </div>
