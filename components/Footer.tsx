@@ -9,9 +9,9 @@ const COLS = [
   {
     h: "Contact",
     items: [
-      "partnerships@elevatedwireless.com",
-      "invest@elevatedwireless.com",
-      "press@elevatedwireless.com",
+      "partnerships@getelevatedwireless.com",
+      "invest@getelevatedwireless.com",
+      "press@getelevatedwireless.com",
     ],
   },
 ];

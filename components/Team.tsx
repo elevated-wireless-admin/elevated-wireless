@@ -11,14 +11,14 @@ const TEAM: Person[] = [
     n: "Joe DeMaria",
     r: "Founder & CEO",
     img: "/img/team/joe.jpg",
-    hero: "$1M → $60M in 18 months.",
+    hero: "Seasoned Tech Founder.",
     c: "13 years leading go-to-market and content strategy for universities, corporate learning, and influencer brands. Pioneer in e-learning, serial operator, builder of high-performing teams.",
   },
   {
     n: "Roger Love",
-    r: "Co-Founder · Voice Coach to the Stars",
+    r: "Co-Founder",
     img: "/img/team/roger.jpg",
-    hero: "Reese Witherspoon. Bradley Cooper. Selena Gomez.",
+    hero: "Voice Coach to the Stars.",
     c: "One of the world's foremost authorities on voice. Author of four best-selling books. Clients include Reese Witherspoon, Zoe Saldana, Bradley Cooper, Anthony Robbins, Selena Gomez and more.",
   },
   {

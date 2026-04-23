@@ -5,18 +5,21 @@ import { DuotonePhoto, Label, Reveal } from "./primitives";
 
 // ————————————————————————————————————————————————
 // 6a — NetworkDiagram
-// Verizon 5G → Reach Mobile → Elevated (hub) → Brand carriers → Members
+// Verizon 5G → Elevated (hub) → Brand carriers → Members
+// (Reach Mobile intentionally omitted from the public topology.)
 // ————————————————————————————————————————————————
 function NetworkDiagram() {
   const W = 560;
   const H = 420;
   const cols = [
-    { x: 70, label: "Verizon 5G", sub: "Network", r: 28, hub: false },
-    { x: 180, label: "Reach Mobile", sub: "MVNO platform", r: 24, hub: false },
-    { x: 295, label: "Elevated", sub: "Operating co", r: 36, hub: true },
-    { x: 420, label: "Brand carrier", sub: "White-label", r: 22, hub: false },
+    { x: 100, label: "Verizon 5G", sub: "Network", r: 28, hub: false },
+    { x: 260, label: "Elevated", sub: "Operating co", r: 36, hub: true },
+    { x: 400, label: "Brand carrier", sub: "White-label", r: 22, hub: false },
     { x: 510, label: "Members", sub: "", r: 10, hub: false },
   ];
+  const HUB_IDX = 1;
+  const BRAND_IDX = 2;
+  const MEMBER_IDX = 3;
   const cy = H / 2;
   const brandYs = [cy - 80, cy, cy + 80];
   const memberDots = (bx: number, by: number) => {
@@ -62,19 +65,11 @@ function NetworkDiagram() {
         </defs>
         <rect width={W} height={H} fill="url(#grid6a)" />
 
-        {/* Verizon → Reach → Elevated */}
+        {/* Verizon → Elevated */}
         <line
           x1={cols[0].x + cols[0].r}
           y1={cy}
-          x2={cols[1].x - cols[1].r}
-          y2={cy}
-          stroke={t.ink}
-          strokeWidth="1"
-        />
-        <line
-          x1={cols[1].x + cols[1].r}
-          y1={cy}
-          x2={cols[2].x - cols[2].r}
+          x2={cols[HUB_IDX].x - cols[HUB_IDX].r}
           y2={cy}
           stroke={t.ink}
           strokeWidth="1"
@@ -84,9 +79,9 @@ function NetworkDiagram() {
         {brandYs.map((by, i) => (
           <line
             key={`eb${i}`}
-            x1={cols[2].x + cols[2].r}
+            x1={cols[HUB_IDX].x + cols[HUB_IDX].r}
             y1={cy}
-            x2={cols[3].x - cols[3].r}
+            x2={cols[BRAND_IDX].x - cols[BRAND_IDX].r}
             y2={by}
             stroke={t.ink}
             strokeWidth="1"
@@ -96,13 +91,13 @@ function NetworkDiagram() {
 
         {/* Brands → members */}
         {brandYs.map((by, i) => {
-          const pts = memberDots(cols[4].x, by);
+          const pts = memberDots(cols[MEMBER_IDX].x, by);
           return (
             <g key={`bm${i}`}>
               {pts.map((p, j) => (
                 <line
                   key={j}
-                  x1={cols[3].x + cols[3].r}
+                  x1={cols[BRAND_IDX].x + cols[BRAND_IDX].r}
                   y1={by}
                   x2={p.x}
                   y2={p.y}
@@ -120,8 +115,8 @@ function NetworkDiagram() {
         })}
 
         {/* Nodes */}
-        {cols.slice(0, 4).map((c, i) => {
-          if (i === 3) {
+        {cols.map((c, i) => {
+          if (i === BRAND_IDX) {
             return brandYs.map((by, j) => (
               <g key={`brand-${j}`}>
                 <circle cx={c.x} cy={by} r={c.r} fill={t.paper} stroke={t.ink} strokeWidth="1" />
@@ -129,6 +124,7 @@ function NetworkDiagram() {
               </g>
             ));
           }
+          if (i === MEMBER_IDX) return null;
           return (
             <g key={c.label}>
               {c.hub && (
@@ -179,7 +175,7 @@ function NetworkDiagram() {
 
         {/* Labels */}
         {cols.map((c, i) => {
-          const y = i === 3 ? brandYs[0] - c.r - 14 : cy - c.r - 14;
+          const y = i === BRAND_IDX ? brandYs[0] - c.r - 14 : cy - c.r - 14;
           return (
             <g key={`lbl-${i}`}>
               <text
@@ -211,16 +207,16 @@ function NetworkDiagram() {
           );
         })}
 
-        {/* Brand layer bracket */}
+        {/* Brand-layer bracket */}
         <g opacity="0.6">
           <path
-            d={`M ${cols[3].x + cols[3].r + 8} ${brandYs[0]} L ${cols[3].x + cols[3].r + 12} ${brandYs[0]} L ${cols[3].x + cols[3].r + 12} ${brandYs[2]} L ${cols[3].x + cols[3].r + 8} ${brandYs[2]}`}
+            d={`M ${cols[BRAND_IDX].x + cols[BRAND_IDX].r + 8} ${brandYs[0]} L ${cols[BRAND_IDX].x + cols[BRAND_IDX].r + 12} ${brandYs[0]} L ${cols[BRAND_IDX].x + cols[BRAND_IDX].r + 12} ${brandYs[2]} L ${cols[BRAND_IDX].x + cols[BRAND_IDX].r + 8} ${brandYs[2]}`}
             fill="none"
             stroke={t.metal}
             strokeWidth="0.7"
           />
           <text
-            x={cols[3].x + cols[3].r + 18}
+            x={cols[BRAND_IDX].x + cols[BRAND_IDX].r + 18}
             y={cy + 3}
             fill={t.metal}
             style={{
@@ -445,16 +441,16 @@ const ROWS: Row[] = [
     diagram: "pyramid",
   },
   {
-    label: "6c · Marketplace + Access",
-    title: "The texture of the membership.",
-    body: "A curated ecosystem of partner perks, experiences, and expert access — organized around what each brand's audience actually values.",
+    label: "6c · Membership Experience",
+    title: "The layer each brand makes theirs.",
+    body: "Elevated provides the surface every brand carrier ships with — branded app, onboarding, in-product messaging, notifications. What each brand puts on top is their call. Elevated Wireless runs the full curated members' marketplace you saw above. Other carriers can build their own member experience — or keep it lean and let the core wireless benefit stand.",
     bullets: [
-      "Curated perks across health, hospitality, golf, lifestyle, business",
-      "AI-powered recommendations tuned to each audience",
-      "Push, email, and in-app surfacing",
-      "Category-exclusive partnerships preserved per brand",
+      "Branded mobile experience per carrier — app, onboarding, in-product surfacing",
+      "Messaging + notification infrastructure — each brand controls voice and cadence",
+      "Optional benefits layer — brands bring their own, or skip it entirely",
+      "Member relationships stay with the brand — no cross-carrier cannibalization",
     ],
-    img: "editorial · marketplace",
+    img: "editorial · branded experience",
     src: "/img/platform-6c.jpg",
   },
 ];

@@ -68,7 +68,7 @@ export function TwoPaths() {
                 benefits, and early-member pricing.
               </p>
               <a
-                href="mailto:waitlist@elevatedwireless.com?subject=Elevated%20Wireless%20Waitlist"
+                href="mailto:waitlist@getelevatedwireless.com?subject=Elevated%20Wireless%20Waitlist"
                 style={{
                   padding: "14px 22px",
                   background: t.metalBright,
@@ -117,7 +117,7 @@ export function TwoPaths() {
                 terms are signed.
               </p>
               <a
-                href="mailto:partnerships@elevatedwireless.com?subject=Partner%20Briefing"
+                href="mailto:partnerships@getelevatedwireless.com?subject=Partner%20Briefing"
                 style={{
                   padding: "14px 22px",
                   background: "transparent",
@@ -152,7 +152,7 @@ export function TwoPaths() {
           <div>
             Backing the next category of wireless?{" "}
             <a
-              href="mailto:invest@elevatedwireless.com?subject=Investor%20Briefing"
+              href="mailto:invest@getelevatedwireless.com?subject=Investor%20Briefing"
               style={{ color: t.metalBright, borderBottom: `1px solid ${t.metal}` }}
             >
               Request an investor briefing →

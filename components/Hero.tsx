@@ -50,7 +50,7 @@ export function Hero() {
       <Reveal>
         <div style={{ maxWidth: 1200, display: "flex", flexDirection: "column", gap: 28 }}>
           <Label style={{ color: t.metalBright, letterSpacing: "0.34em" }}>
-            The Next Evolution of Wireless
+            The Future Has Arrived
           </Label>
 
           <h1

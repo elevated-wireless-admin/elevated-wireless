@@ -50,7 +50,7 @@ export function Nav() {
         ))}
       </div>
       <a
-        href="mailto:partnerships@elevatedwireless.com"
+        href="mailto:partnerships@getelevatedwireless.com"
         style={{
           padding: "10px 18px",
           border: `1px solid ${t.ink}`,
