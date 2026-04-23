@@ -8,3 +8,6 @@ out/
 .env*.local
 .vercel
 next-env.d.ts
+
+# Vault-local internal docs — contains candid feedback, not for public repo
+_docs/
