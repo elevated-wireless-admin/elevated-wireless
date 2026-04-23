@@ -84,52 +84,27 @@ export function Hero() {
             platform to launch your own branded wireless offer.
           </p>
 
-          <div style={{ display: "flex", gap: 14, marginTop: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", marginTop: 24 }}>
             <a
-              href="#partner"
+              href="#category"
               style={{
-                padding: "16px 26px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 14,
+                padding: "18px 32px",
                 background: t.metalBright,
                 color: t.navy,
                 fontFamily: t.mono,
-                fontSize: 12,
+                fontSize: 13,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 fontWeight: 600,
               }}
             >
-              Join Elevated →
-            </a>
-            <a
-              href="#partner"
-              style={{
-                padding: "16px 26px",
-                border: `1px solid ${t.metal}`,
-                color: t.paper,
-                fontFamily: t.mono,
-                fontSize: 12,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-              }}
-            >
-              Launch Your Brand →
+              Learn More
+              <span aria-hidden="true" style={{ fontSize: 16, lineHeight: 1, fontWeight: 500 }}>↓</span>
             </a>
           </div>
-
-          <a
-            href="#category"
-            style={{
-              marginTop: 40,
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 12,
-              opacity: 0.5,
-              color: t.paper,
-            }}
-          >
-            <Label>Learn more</Label>
-            <span style={{ fontSize: 14 }}>↓</span>
-          </a>
         </div>
       </Reveal>
     </section>
