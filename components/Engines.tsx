@@ -22,7 +22,7 @@ const ENGINES: Engine[] = [
     n: "02",
     name: "White-Label Brands",
     body: "Turnkey branded wireless for high-affinity audiences — media personalities, mission-driven brands, universities, celebrities with their own business ambitions. Fast to market. Recurring royalties.",
-    who: "Glenn Beck–pattern partners · NIL schools · The Ryan Reynolds category",
+    who: "Influencer pattern partners · NIL schools · The Ryan Reynolds category",
   },
   {
     n: "03",

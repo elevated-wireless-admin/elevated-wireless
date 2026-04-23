@@ -448,7 +448,7 @@ const ROWS: Row[] = [
       "Your name on the service, your voice in the communication",
       "Exclusive member-only benefits not available anywhere else",
       "Your audience stays yours — no cross-carrier sharing, no list commingling",
-      "Shaped with each partner — no one-size-fits-all, no promises we can't keep",
+      "Shaped with each partner — no one-size-fits-all",
     ],
     img: "editorial · branded experience",
     src: "/img/platform-6c.jpg",
