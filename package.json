@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:pages": "NEXT_PUBLIC_BASE_PATH=/elevated-wireless next build"
+    "build:subpath": "NEXT_PUBLIC_BASE_PATH=/elevated-wireless next build"
   },
   "dependencies": {
     "eslint-config-next": "^15.5.15",
