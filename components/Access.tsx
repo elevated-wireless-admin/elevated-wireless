@@ -7,30 +7,30 @@ type Lane = { n: string; title: string; body: string; img: string; src: string }
 
 const LANES: Lane[] = [
   {
-    n: "4a",
-    title: "Monthly sessions with world-class operators",
-    body: "Learn directly from Jay Abraham — the most-quoted marketer alive, Jon Benson a legendary copywriter now focused on AI, or Dr. Daniel Amen — America's brain doctor, just to name a few. Additional hosts curated across business, AI, health, and performance. Monthly sessions exclusively for Elevated members.",
+    n: "4a · Activate",
+    title: "Programming your audience can't get elsewhere.",
+    body: "Exclusive sessions with operators, AI thinkers, doctors, and the marketers your audience already reads — programmed for the Elevated network and surfaced inside your branded service. Activation stops being a paid email. It becomes a reason your audience joins your wireless and stays.",
     img: "portrait · operator",
     src: "/img/access-4a.jpg",
   },
   {
-    n: "4b",
-    title: "A personal AI board of advisors",
-    body: "Every member builds their own board — bot-embodied intelligence from operators and thinkers across history and today, built on the Delphi platform. Ask anything. Get the kind of counsel that used to require a phone number nobody gives out.",
+    n: "4b · Engage",
+    title: "AI counsel, inside the experience your brand owns.",
+    body: "A personal advisor bench — bot-embodied intelligence from operators and thinkers across history and today, built on the Delphi platform. Your audience asks it anything; the answer surfaces inside your branded service. You get the engagement data.",
     img: "abstract · advisor interface",
     src: "/img/access-4b.jpg",
   },
   {
-    n: "4c",
-    title: "Curated perks, not a rewards program",
-    body: "Category-exclusive partner experiences across health, hospitality, golf, business services, and travel — curated the way a concierge would, not the way a coupon site would.",
+    n: "4c · Differentiate",
+    title: "A curated marketplace, not a coupon page.",
+    body: "Category-exclusive partner experiences across health, hospitality, golf, business services, and travel — curated the way a concierge would, not the way a rewards program would. Shaped per partner so the marketplace fits what makes your audience yours and never reads as “perks anyone could get.”",
     img: "editorial · hospitality",
     src: "/img/access-4c.jpg",
   },
   {
-    n: "4d",
-    title: "A room full of people worth knowing",
-    body: "Private events. Digital salons. Member introductions. The people in the room are the point — and we protect who gets in for a reason.",
+    n: "4d · Monetize",
+    title: "A revenue line a sponsorship deal could never carry.",
+    body: "Royalty on every subscriber. Marketplace participation. Premium tiers, event programming, optional add-ons. For most premium brands, an Elevated white-label is a higher-LTV product than the last digital course they launched — and the contract renews monthly without the customer ever thinking about it.",
     img: "editorial · private event",
     src: "/img/access-4d.jpg",
   },
@@ -135,19 +135,22 @@ export function Access() {
                 margin: 0,
               }}
             >
-              The network
+              <span style={{ color: t.metalBright }}>Activate.</span>
               <br />
-              no other carrier
+              <span style={{ color: t.metalBright }}>Engage.</span>
               <br />
-              can offer you.
+              <span style={{ color: t.metalBright }}>Differentiate.</span>
+              <br />
+              <span style={{ color: t.metalBright }}>Monetize.</span>
             </h2>
           </div>
           <div style={{ fontSize: 17, lineHeight: 1.6, opacity: 0.85, paddingBottom: 12 }}>
-            Every Elevated Wireless member — and every member of every brand we power — gets
-            access to a living network of operators, mentors, and institutions that most people
-            will never meet.
+            Wireless was sold as a phone bill. Elevated turns it into a product your brand can
+            sell, a benefit your audience values, a relationship deeper than the last sponsorship
+            deal — and a revenue line that compounds without ever being seen as &ldquo;their phone
+            bill went up.&rdquo;
             <div style={{ marginTop: 20, fontSize: 15, color: t.metalBright, fontStyle: "italic" }}>
-              The cellular service is how we deliver it. Access is the product.
+              Four ways the platform turns wireless into a brand asset.
             </div>
           </div>
         </div>
@@ -181,8 +184,9 @@ export function Access() {
               textAlign: "center",
             }}
           >
-            A phone service that keeps you connected is obvious. A phone service that makes you
-            more <span style={{ color: t.metalBright }}>capable</span> is the one we&apos;re building.
+            We run our own service to prove every lever works in practice. Brands on the platform
+            get the same operating stack — and the same{" "}
+            <span style={{ color: t.metalBright }}>four ways to put it to work</span>.
           </div>
         </div>
       </div>

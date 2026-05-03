@@ -14,13 +14,13 @@ const ENGINES: Engine[] = [
   {
     n: "01",
     name: "Flagship Brands",
-    body: "Custom-built premium wireless companies for recognized brands with audiences worth the full build. Long cycle. Large revenue. We run the operating company end-to-end.",
+    body: "Custom-built premium wireless ecosystems for the largest brands. Bespoke application, custom marketplace, custom programming, custom data layer — every part of the stack reshaped to the brand. Long cycle. Large revenue. Full operating responsibility.",
     who: "Media empires · Legacy consumer brands · Category-defining personalities",
   },
   {
     n: "02",
     name: "White-Label Brands",
-    body: "Turnkey branded wireless for high-affinity audiences — media personalities, mission-driven brands, universities, celebrities with their own business ambitions. Fast to market. Recurring royalties.",
+    body: "Turnkey branded wireless on the operator stack we run ourselves. You get the relationship with our carrier partners, the pre-built application reskinned to your brand, and mobile as a new channel to activate your audience — surfacing offers, programming, and benefits that don't belong in email. Two-week onboarding. Recurring royalties.",
     who: "Influencer pattern partners · NIL schools · The Ryan Reynolds category",
   },
   {

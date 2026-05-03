@@ -5,8 +5,8 @@ import { Label, Reveal } from "./primitives";
 
 const PARAS = [
   "For thirty years, wireless has been sold the same way. Price. Coverage. Speed. Three national carriers chasing a commodity. The affluent professional paying $1,000 a year for service gets the exact same thing as everyone else — a signal.",
-  "Every other premium category has corrected this. Credit cards became membership. Fitness became community. Coffee became identity. Travel became experience. Connectivity is the last holdout.",
-  "Luxury and affinity wireless is the next category — and Elevated is the company building it. Operator and platform, both. We run our own premium wireless service to prove the category is real. And we license the platform to brands that belong in it.",
+  "Premium audiences don't want a phone bill. They want a brand relationship — curated for them, owned by the brand they trust, paid back in benefits a carrier could never assemble. Wireless is the last premium category still sold as a commodity. That ends here.",
+  "We've assembled every key element of the next gen wireless stack and then added our own layer to unlock its full potential. Now it's available to you.",
 ];
 
 export function Category() {
@@ -35,7 +35,7 @@ export function Category() {
             maxWidth: 1100,
           }}
         >
-          Wireless is about to get the upgrade every other category has had.
+          Wireless was sold as a commodity. We&apos;re building what comes next.
         </h2>
 
         <div

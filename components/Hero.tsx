@@ -298,9 +298,8 @@ export function Hero() {
               margin: "12px 0 0",
             }}
           >
-            Elevated delivers premium cellular on Verizon 5G — and direct access to some of the
-            most sought-after people, ideas, and experiences on earth. Leverage our platform to
-            launch your own branded wireless offering.
+            Elevated turns a premium audience into a profitable wireless company — Verizon 5G,
+            fully operated, branded as yours, royalties on every subscriber.
           </p>
 
           <div style={{ display: "flex", gap: 14, marginTop: 20 }}>
