@@ -1,0 +1,10 @@
+/* ============================================================
+   HOOSIER WIRELESS — Design System entry stylesheet
+   styles.css
+   ------------------------------------------------------------
+   Single import surface for consumers. Link THIS file and you
+   get the full "STADIUM" foundation (tokens, fonts, base
+   elements, motif utilities, buttons, cards, badges, wordmark).
+   ============================================================ */
+
+@import url('./colors_and_type.css');
