@@ -1,10 +1,9 @@
 "use client";
 
 import { tokens as t } from "@/lib/tokens";
-import { Label, Reveal } from "./primitives";
+import { Reveal } from "./primitives";
 
 type Engine = {
-  n: string;
   name: string;
   body: string;
   who: string;
@@ -12,36 +11,46 @@ type Engine = {
 
 const ENGINES: Engine[] = [
   {
-    n: "01",
     name: "White-Label Brands",
     body: "Turnkey branded wireless for audiences with real affinity — media personalities, universities, mission-driven brands. They bring the audience; we bring the entire company.",
     who: "Media personalities · Universities · Mission-driven brands",
   },
   {
-    n: "02",
     name: "Flagship Brands",
     body: "Higher-touch anchor partnerships with co-marketing, custom development, and deeper integration.",
     who: "Anchor brand partnerships",
   },
   {
-    n: "03",
     name: "Wireless as a Benefit",
     body: "B2B licensing of wireless as an employee or member benefit — masterminds, associations, enterprise programs.",
     who: "Masterminds · Associations · Enterprise programs",
   },
   {
-    n: "04",
     name: "Services",
     body: "Platform-side enablement — creative, support, data — sold to brands and operators.",
     who: "Brands · Operators",
   },
-  {
-    n: "05",
-    name: "Elevated Wireless (D2C)",
-    body: "Our own premium service on Verizon 5G, proving the category works. Launching 2026.",
-    who: "Direct to consumer · Launching 2026",
-  },
 ];
+
+// Numbered accent badge. Rendered as SVG so it stays a true circle — the
+// global stylesheet forces border-radius:0 on every box element.
+function NumberBadge({ n }: { n: number }) {
+  return (
+    <svg width="36" height="36" viewBox="0 0 36 36" style={{ display: "block", flexShrink: 0 }}>
+      <circle cx="18" cy="18" r="17" fill="none" stroke={t.ink} strokeWidth="1" />
+      <text
+        x="18"
+        y="19"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fill={t.ink}
+        style={{ fontFamily: t.sansDisplay, fontSize: 16, fontWeight: 500 }}
+      >
+        {n}
+      </text>
+    </svg>
+  );
+}
 
 export function Engines() {
   return (
@@ -67,7 +76,6 @@ export function Engines() {
           }}
         >
           <div>
-            <Label style={{ opacity: 0.6, marginBottom: 24 }}>The Business</Label>
             <h2
               style={{
                 fontFamily: t.sansDisplay,
@@ -78,13 +86,13 @@ export function Engines() {
                 margin: 0,
               }}
             >
-              Five streams.
+              Four streams.
               <br />
               One platform.
             </h2>
           </div>
           <p style={{ fontSize: 17, lineHeight: 1.6, opacity: 0.75, paddingBottom: 12, margin: 0 }}>
-            A single shared platform monetized through five distinct paths. Each stream compounds
+            A single shared platform monetized through four distinct paths. Each stream compounds
             the next.
           </p>
         </div>
@@ -100,11 +108,10 @@ export function Engines() {
         >
           {ENGINES.map((e, i) => (
             <Reveal
-              key={e.n}
+              key={e.name}
               delay={i * 60}
               style={{
-                gridColumn:
-                  i === ENGINES.length - 1 && ENGINES.length % 2 === 1 ? "span 12" : "span 6",
+                gridColumn: "span 6",
                 display: "block",
               }}
             >
@@ -118,24 +125,26 @@ export function Engines() {
                   display: "flex",
                   flexDirection: "column",
                   gap: 16,
-                  minHeight: 280,
+                  minHeight: 260,
                   height: "100%",
                 }}
               >
-                <Label style={{ opacity: 0.55, color: t.ink }}>Engine {e.n}</Label>
-                <h3
-                  style={{
-                    fontFamily: t.sansDisplay,
-                    fontSize: 28,
-                    fontWeight: 500,
-                    letterSpacing: "-0.018em",
-                    lineHeight: 1.1,
-                    margin: "0 0 4px",
-                    color: t.ink,
-                  }}
-                >
-                  {e.name}
-                </h3>
+                <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                  <NumberBadge n={i + 1} />
+                  <h3
+                    style={{
+                      fontFamily: t.sansDisplay,
+                      fontSize: 28,
+                      fontWeight: 500,
+                      letterSpacing: "-0.018em",
+                      lineHeight: 1.1,
+                      margin: 0,
+                      color: t.ink,
+                    }}
+                  >
+                    {e.name}
+                  </h3>
+                </div>
                 <p
                   style={{
                     fontSize: 14.5,
@@ -151,21 +160,11 @@ export function Engines() {
                     marginTop: "auto",
                     paddingTop: 14,
                     borderTop: `1px solid ${t.line}`,
+                    fontSize: 13,
+                    opacity: 0.7,
                   }}
                 >
-                  <div
-                    style={{
-                      fontFamily: t.mono,
-                      fontSize: 11.5,
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      opacity: 0.55,
-                      marginBottom: 4,
-                    }}
-                  >
-                    For
-                  </div>
-                  <div style={{ fontSize: 13, opacity: 0.85 }}>{e.who}</div>
+                  {e.who}
                 </div>
               </div>
             </Reveal>

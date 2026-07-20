@@ -2,7 +2,7 @@
 
 import { CSSProperties } from "react";
 import { tokens as t } from "@/lib/tokens";
-import { EWMark, Label, Reveal } from "./primitives";
+import { EWMark, Reveal } from "./primitives";
 
 // ————————————————————————————————————————————————
 // University Hero — navy, matches homepage type system,
@@ -34,10 +34,6 @@ export function UniversityHero() {
 
       <Reveal>
         <div style={{ maxWidth: 1400, display: "flex", flexDirection: "column", gap: 32 }}>
-          <Label style={{ color: t.metalBright, letterSpacing: "0.34em" }}>
-            For Universities &amp; Athletics
-          </Label>
-
           <h1
             style={{
               fontFamily: t.sansDisplay,
@@ -117,7 +113,6 @@ export function UniversityMath() {
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-        <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Opportunity</Label>
         <h2
           style={{
             fontFamily: t.sansDisplay,
@@ -170,7 +165,6 @@ export function UniversityFit() {
           }}
         >
           <div>
-            <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Fit</Label>
             <h2
               style={{
                 fontFamily: t.sansDisplay,
@@ -213,7 +207,6 @@ export function UniversityLaunch() {
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 64 }}>
-          <Label style={{ color: t.metal, marginBottom: 24, opacity: 0.75 }}>What&apos;s Next</Label>
           <h2
             style={{
               fontFamily: t.sansDisplay,

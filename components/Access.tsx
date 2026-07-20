@@ -2,7 +2,7 @@
 
 import { CSSProperties, ReactNode } from "react";
 import { tokens as t } from "@/lib/tokens";
-import { Label, Reveal } from "./primitives";
+import { Reveal } from "./primitives";
 
 type DealLane = { n: string; title: string; body: string };
 
@@ -74,7 +74,6 @@ function LaneRow({ lane }: { lane: DealLane }) {
 export function Access({
   id = "access",
   screenLabel = "04 The Deal",
-  label = "The Deal",
   heading = "A new revenue stream. Not a new business.",
   lede = "Launching a wireless company used to mean towers, billing systems, support desks, and regulatory filings. On Elevated it means one thing: telling your audience it exists. We built the company so you only bring the brand.",
   lanes = HOME_LANES,
@@ -88,7 +87,6 @@ export function Access({
 }: {
   id?: string;
   screenLabel?: string;
-  label?: string;
   heading?: ReactNode;
   lede?: ReactNode;
   lanes?: DealLane[];
@@ -118,7 +116,6 @@ export function Access({
           }}
         >
           <div>
-            <Label style={{ color: t.metal, opacity: 0.75, marginBottom: 28 }}>{label}</Label>
             <h2
               style={{
                 fontFamily: t.sansDisplay,

@@ -5,7 +5,7 @@ import { Label, Wordmark } from "./primitives";
 
 const COLS = [
   { h: "Company", items: ["Access", "Platform", "Partner", "Team", "Contact"] },
-  { h: "For", items: ["Members", "Brands", "Investors", "Press"] },
+  { h: "For", items: ["Brands", "Investors", "Press"] },
   {
     h: "Contact",
     items: [

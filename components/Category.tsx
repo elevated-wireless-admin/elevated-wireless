@@ -1,7 +1,7 @@
 "use client";
 
 import { tokens as t } from "@/lib/tokens";
-import { Label, Reveal } from "./primitives";
+import { Reveal } from "./primitives";
 
 const PARAS = [
   "300 million Americans spend $349 billion a year with AT&T, T-Mobile, and Verizon — without feeling loyalty to any of them. Thirty years of price, coverage, and speed. A commodity with a logo.",
@@ -23,7 +23,6 @@ export function Category() {
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-        <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Problem</Label>
         <h2
           style={{
             fontFamily: t.sansDisplay,
@@ -78,13 +77,6 @@ export function Category() {
             display: "block",
           }}
         >
-          <div style={{ position: "absolute", top: 20, left: 24 }}>
-            <Label style={{ color: t.metal, opacity: 0.7 }}>Fig. 01 · The Math</Label>
-          </div>
-          <div style={{ position: "absolute", top: 20, right: 24 }}>
-            <Label style={{ color: t.metal, opacity: 0.5 }}>Commodity → Category</Label>
-          </div>
-
           <div
             className="ew-stack-md ew-stagger"
             style={{
