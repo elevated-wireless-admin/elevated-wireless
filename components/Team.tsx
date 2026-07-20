@@ -115,7 +115,6 @@ export function Team() {
           }}
         >
           <div>
-            <Label style={{ opacity: 0.6, marginBottom: 24 }}>Who&apos;s Building It</Label>
             <h2
               style={{
                 fontFamily: t.sansDisplay,
@@ -262,9 +261,6 @@ export function Team() {
             }}
           >
             <Label style={{ opacity: 0.6 }}>Advisors</Label>
-            <div style={{ fontSize: 13, opacity: 0.5, fontFamily: t.mono }}>
-              05 · Strategic counsel
-            </div>
           </div>
           <div
             className="ew-stack-md"

@@ -1,7 +1,7 @@
 "use client";
 
 import { tokens as t } from "@/lib/tokens";
-import { DuotonePhoto, Label, Reveal } from "./primitives";
+import { DuotonePhoto, Reveal } from "./primitives";
 
 // ————————————————————————————————————————————————
 // 6a — NetworkDiagram
@@ -42,21 +42,6 @@ function NetworkDiagram() {
         boxSizing: "border-box",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          top: 18,
-          left: 24,
-          fontFamily: t.mono,
-          fontSize: 10,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: t.metal,
-          opacity: 0.7,
-        }}
-      >
-        Fig. 6a — Network topology
-      </div>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" style={{ display: "block" }}>
         <defs>
           <pattern id="grid6a" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -266,21 +251,6 @@ function DataPyramid() {
         boxSizing: "border-box",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          top: 18,
-          left: 24,
-          fontFamily: t.mono,
-          fontSize: 10,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: t.metal,
-          opacity: 0.7,
-        }}
-      >
-        Fig. 6b — Analytics maturity
-      </div>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" style={{ display: "block" }}>
         <defs>
           <pattern id="grid6b" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -458,7 +428,6 @@ const ROWS: Row[] = [
 function RowContent({ r }: { r: Row }) {
   return (
     <div>
-      <Label style={{ opacity: 0.55, marginBottom: 16 }}>{r.label}</Label>
       <h3
         style={{
           fontFamily: t.sansDisplay,
@@ -546,7 +515,6 @@ export function Platform() {
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
         <div style={{ marginBottom: 80, maxWidth: 1100 }}>
-          <Label style={{ opacity: 0.6, marginBottom: 24 }}>The Platform</Label>
           <h2
             style={{
               fontFamily: t.sansDisplay,
