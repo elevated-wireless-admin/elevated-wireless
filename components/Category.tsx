@@ -4,9 +4,9 @@ import { tokens as t } from "@/lib/tokens";
 import { Label, Reveal } from "./primitives";
 
 const PARAS = [
-  "For thirty years, wireless has been sold the same way. Price. Coverage. Speed. Three national carriers chasing a commodity. The affluent professional paying $1,000 a year for service gets the exact same thing as everyone else — a signal.",
-  "Premium audiences don't want a phone bill. They want a brand relationship — curated for them, owned by the brand they trust, paid back in benefits a carrier could never assemble. Wireless is the last premium category still sold as a commodity. That ends here.",
-  "We've assembled every key element of the next gen wireless stack and then added our own layer to unlock its full potential. Now it's available to you.",
+  "300 million Americans spend $349 billion a year with AT&T, T-Mobile, and Verizon — without feeling loyalty to any of them. Thirty years of price, coverage, and speed. A commodity with a logo.",
+  "The brands people actually love should be competing here. Most still believe in a barrier to entry that fell years ago.",
+  "For the brands these customers love, wireless is the next layer of a relationship they've already earned. Elevated is the platform that makes it possible.",
 ];
 
 export function Category() {
@@ -23,7 +23,7 @@ export function Category() {
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-        <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Category We&apos;re Building</Label>
+        <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Problem</Label>
         <h2
           style={{
             fontFamily: t.sansDisplay,
@@ -35,7 +35,7 @@ export function Category() {
             maxWidth: 1100,
           }}
         >
-          Wireless was sold as a commodity. We&apos;re building what comes next.
+          No one loves their carrier.
         </h2>
 
         <div
@@ -203,7 +203,7 @@ export function Category() {
                   opacity: 0.85,
                 }}
               >
-                Premium audiences
+                Loved brands
               </div>
             </div>
 
@@ -343,12 +343,10 @@ export function Category() {
               >
                 Three national carriers.
                 <br />
-                Hundreds of premium audiences.
+                Hundreds of loved brands.
                 <br />
                 <span style={{ color: t.metalBright }}>
-                  The future of wireless is branded
-                  <br />
-                  relationships with meaning.
+                  The math isn&rsquo;t going to hold.
                 </span>
               </div>
             </div>

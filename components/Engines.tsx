@@ -13,27 +13,33 @@ type Engine = {
 const ENGINES: Engine[] = [
   {
     n: "01",
-    name: "Flagship Brands",
-    body: "Custom-built premium wireless ecosystems for the largest brands. Bespoke application, custom marketplace, custom programming, custom data layer — every part of the stack reshaped to the brand. Long cycle. Large revenue. Full operating responsibility.",
-    who: "Media empires · Legacy consumer brands · Category-defining personalities",
+    name: "White-Label Brands",
+    body: "Turnkey branded wireless for audiences with real affinity — media personalities, universities, mission-driven brands. They bring the audience; we bring the entire company.",
+    who: "Media personalities · Universities · Mission-driven brands",
   },
   {
     n: "02",
-    name: "White-Label Brands",
-    body: "Turnkey branded wireless on the operator stack we run ourselves. You get the relationship with our carrier partners, the pre-built application reskinned to your brand, and mobile as a new channel to activate your audience — surfacing offers, programming, and benefits that don't belong in email. Two-week onboarding. Recurring royalties.",
-    who: "Influencer pattern partners · NIL schools · The Ryan Reynolds category",
+    name: "Flagship Brands",
+    body: "Higher-touch anchor partnerships with co-marketing, custom development, and deeper integration.",
+    who: "Anchor brand partnerships",
   },
   {
     n: "03",
-    name: "Cellular as a Benefit",
-    body: "Premium wireless licensed at scale to private masterminds, membership organizations, professional associations, and enterprise benefits programs — offered to members at preferred pricing.",
-    who: "Masterminds · Private clubs · Trade associations · HR benefits buyers",
+    name: "Wireless as a Benefit",
+    body: "B2B licensing of wireless as an employee or member benefit — masterminds, associations, enterprise programs.",
+    who: "Masterminds · Associations · Enterprise programs",
   },
   {
     n: "04",
     name: "Services",
-    body: "Marketing, data operations, and AI-native strategy — sold to other MVNOs, telecom operators, and enterprise wireless programs. The shortest sales cycle in the business.",
-    who: "Operators with network but no team",
+    body: "Platform-side enablement — creative, support, data — sold to brands and operators.",
+    who: "Brands · Operators",
+  },
+  {
+    n: "05",
+    name: "Elevated Wireless (D2C)",
+    body: "Our own premium service on Verizon 5G, proving the category works. Launching 2026.",
+    who: "Direct to consumer · Launching 2026",
   },
 ];
 
@@ -72,14 +78,14 @@ export function Engines() {
                 margin: 0,
               }}
             >
-              Four engines.
+              Five streams.
               <br />
               One platform.
             </h2>
           </div>
           <p style={{ fontSize: 17, lineHeight: 1.6, opacity: 0.75, paddingBottom: 12, margin: 0 }}>
-            Elevated earns on four distinct paths — from turnkey brand licensing to enterprise
-            benefits programs. Each engine compounds the next.
+            A single shared platform monetized through five distinct paths. Each stream compounds
+            the next.
           </p>
         </div>
 
@@ -97,7 +103,8 @@ export function Engines() {
               key={e.n}
               delay={i * 60}
               style={{
-                gridColumn: "span 6",
+                gridColumn:
+                  i === ENGINES.length - 1 && ENGINES.length % 2 === 1 ? "span 12" : "span 6",
                 display: "block",
               }}
             >
@@ -164,6 +171,32 @@ export function Engines() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal
+          style={{
+            marginTop: 56,
+            paddingTop: 40,
+            borderTop: `1px solid ${t.line}`,
+            display: "block",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: t.sansDisplay,
+              fontSize: "clamp(22px, 2.6vw, 30px)",
+              lineHeight: 1.28,
+              fontWeight: 400,
+              fontStyle: "italic",
+              letterSpacing: "-0.012em",
+              margin: 0,
+              maxWidth: 900,
+              opacity: 0.9,
+            }}
+          >
+            Same audience. Same wireless service. Repackaged and re-fronted by the brand the
+            customer actually chose.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

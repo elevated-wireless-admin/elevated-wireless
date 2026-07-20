@@ -1,107 +1,103 @@
 "use client";
 
+import { CSSProperties, ReactNode } from "react";
 import { tokens as t } from "@/lib/tokens";
-import { DuotonePhoto, Label, Reveal } from "./primitives";
+import { Label, Reveal } from "./primitives";
 
-type Lane = { n: string; title: string; body: string; img: string; src: string };
+type DealLane = { n: string; title: string; body: string };
 
-const LANES: Lane[] = [
+const HOME_LANES: DealLane[] = [
   {
-    n: "4a · Activate",
-    title: "Programming your audience can't get elsewhere.",
-    body: "Exclusive sessions with operators, AI thinkers, doctors, and the marketers your audience already reads — programmed for the Elevated network and surfaced inside your branded service. Activation stops being a paid email. It becomes a reason your audience joins your wireless and stays.",
-    img: "portrait · operator",
-    src: "/img/access-4a.jpg",
+    n: "01",
+    title: "You promote.",
+    body: "Your channels, your voice, your name on the service. That's the whole job. No inventory, no capital, no operations, no customer support line ringing in your building.",
   },
   {
-    n: "4b · Engage",
-    title: "AI counsel, inside the experience your brand owns.",
-    body: "A personal advisor bench — bot-embodied intelligence from operators and thinkers across history and today, built on the Delphi platform. Your audience asks it anything; the answer surfaces inside your branded service. You get the engagement data.",
-    img: "abstract · advisor interface",
-    src: "/img/access-4b.jpg",
+    n: "02",
+    title: "We operate.",
+    body: "Verizon 5G connectivity, SIM and eSIM activation, billing, support, compliance, carrier reporting — end to end, under your brand. Launch in weeks, not quarters.",
   },
   {
-    n: "4c · Differentiate",
-    title: "A curated marketplace, not a coupon page.",
-    body: "Category-exclusive partner experiences across health, hospitality, golf, business services, and travel — curated the way a concierge would, not the way a rewards program would. Shaped per partner so the marketplace fits what makes your audience yours and never reads as “perks anyone could get.”",
-    img: "editorial · hospitality",
-    src: "/img/access-4c.jpg",
-  },
-  {
-    n: "4d · Monetize",
-    title: "A revenue line a sponsorship deal could never carry.",
-    body: "Royalty on every subscriber. Marketplace participation. Premium tiers, event programming, optional add-ons. For most premium brands, an Elevated white-label is a higher-LTV product than the last digital course they launched — and the contract renews monthly without the customer ever thinking about it.",
-    img: "editorial · private event",
-    src: "/img/access-4d.jpg",
+    n: "03",
+    title: "You earn.",
+    body: "A royalty on every subscriber, every month, from the first subscriber. Recurring, compounding, and yours — a revenue stream that grows every time you do what you already do: reach the people who love you.",
   },
 ];
 
-function LaneRow({ lane, flip }: { lane: Lane; flip: boolean }) {
-  const text = (
-    <div>
-      <Label style={{ color: t.metal, opacity: 0.65, marginBottom: 14 }}>Lane · {lane.n}</Label>
-      <h3
-        style={{
-          fontFamily: t.sansDisplay,
-          fontSize: "clamp(28px, 3vw, 38px)",
-          lineHeight: 1.12,
-          fontWeight: 500,
-          letterSpacing: "-0.015em",
-          margin: "0 0 18px",
-        }}
-      >
-        {lane.title}
-      </h3>
-      <p style={{ fontSize: 15.5, lineHeight: 1.6, opacity: 0.8, margin: 0, maxWidth: 560 }}>{lane.body}</p>
-    </div>
-  );
-
-  const photo = (
-    <div style={{ height: 320, overflow: "hidden", position: "relative" }}>
-      <DuotonePhoto
-        ratio="16 / 11"
-        shadow={t.navy}
-        highlight={t.metalBright}
-        midtone={t.navyMid}
-        src={lane.src}
-        alt={lane.img}
-        style={{ height: 320, aspectRatio: "auto" }}
-      />
-    </div>
-  );
-
+function LaneRow({ lane }: { lane: DealLane }) {
   return (
     <div
       className="ew-stack-md"
       style={{
         display: "grid",
-        gridTemplateColumns: flip ? "1.2fr 1fr" : "1fr 1.2fr",
+        gridTemplateColumns: "auto 1fr",
         gap: 56,
-        padding: "56px 0",
+        padding: "48px 0",
         borderTop: `1px solid ${t.navyMid}`,
-        alignItems: "center",
+        alignItems: "start",
       }}
     >
-      {flip ? (
-        <>
-          {text}
-          {photo}
-        </>
-      ) : (
-        <>
-          {photo}
-          {text}
-        </>
-      )}
+      <div
+        style={{
+          fontFamily: t.sansDisplay,
+          fontSize: "clamp(56px, 6vw, 88px)",
+          fontWeight: 500,
+          lineHeight: 0.9,
+          letterSpacing: "-0.03em",
+          color: t.metalBright,
+        }}
+      >
+        {lane.n}
+      </div>
+      <div>
+        <h3
+          style={{
+            fontFamily: t.sansDisplay,
+            fontSize: "clamp(28px, 3vw, 38px)",
+            lineHeight: 1.12,
+            fontWeight: 500,
+            letterSpacing: "-0.015em",
+            margin: "0 0 18px",
+            color: t.metalBright,
+          }}
+        >
+          {lane.title}
+        </h3>
+        <p style={{ fontSize: 15.5, lineHeight: 1.6, opacity: 0.82, margin: 0, maxWidth: 640 }}>
+          {lane.body}
+        </p>
+      </div>
     </div>
   );
 }
 
-export function Access() {
+export function Access({
+  id = "access",
+  screenLabel = "04 The Deal",
+  label = "The Deal",
+  heading = "A new revenue stream. Not a new business.",
+  lede = "Launching a wireless company used to mean towers, billing systems, support desks, and regulatory filings. On Elevated it means one thing: telling your audience it exists. We built the company so you only bring the brand.",
+  lanes = HOME_LANES,
+  closer = (
+    <>
+      The risk stays with us. The brand stays with you.
+      <br />
+      The revenue shows up monthly.
+    </>
+  ),
+}: {
+  id?: string;
+  screenLabel?: string;
+  label?: string;
+  heading?: ReactNode;
+  lede?: ReactNode;
+  lanes?: DealLane[];
+  closer?: ReactNode;
+} = {}) {
   return (
     <section
-      id="access"
-      data-screen-label="04 Access"
+      id={id}
+      data-screen-label={screenLabel}
       className="ew-pad-md"
       style={{
         background: t.navy,
@@ -118,47 +114,33 @@ export function Access() {
             gridTemplateColumns: "1fr 1fr",
             gap: 80,
             alignItems: "end",
-            marginBottom: 100,
+            marginBottom: 80,
           }}
         >
           <div>
-            <Label style={{ color: t.metal, opacity: 0.75, marginBottom: 28 }}>
-              The Elevated Difference
-            </Label>
+            <Label style={{ color: t.metal, opacity: 0.75, marginBottom: 28 }}>{label}</Label>
             <h2
               style={{
                 fontFamily: t.sansDisplay,
-                fontSize: "clamp(48px, 6.8vw, 84px)",
+                fontSize: "clamp(48px, 6.4vw, 80px)",
                 lineHeight: 1.0,
                 fontWeight: 500,
                 letterSpacing: "-0.028em",
                 margin: 0,
               }}
             >
-              <span style={{ color: t.metalBright }}>Activate.</span>
-              <br />
-              <span style={{ color: t.metalBright }}>Engage.</span>
-              <br />
-              <span style={{ color: t.metalBright }}>Differentiate.</span>
-              <br />
-              <span style={{ color: t.metalBright }}>Monetize.</span>
+              {heading}
             </h2>
           </div>
           <div style={{ fontSize: 17, lineHeight: 1.6, opacity: 0.85, paddingBottom: 12 }}>
-            Wireless was sold as a phone bill. Elevated turns it into a product your brand can
-            sell, a benefit your audience values, a relationship deeper than the last sponsorship
-            deal — and a revenue line that compounds without ever being seen as &ldquo;their phone
-            bill went up.&rdquo;
-            <div style={{ marginTop: 20, fontSize: 15, color: t.metalBright, fontStyle: "italic" }}>
-              Four ways the platform turns wireless into a brand asset.
-            </div>
+            {lede}
           </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {LANES.map((lane, i) => (
+          {lanes.map((lane, i) => (
             <Reveal key={lane.n} delay={i * 80}>
-              <LaneRow lane={lane} flip={i % 2 !== 0} />
+              <LaneRow lane={lane} />
             </Reveal>
           ))}
         </div>
@@ -182,11 +164,10 @@ export function Access() {
               letterSpacing: "-0.015em",
               maxWidth: 920,
               textAlign: "center",
-            }}
+              color: t.metalBright,
+            } as CSSProperties}
           >
-            We run our own service to prove every lever works in practice. Brands on the platform
-            get the same operating stack — and the same{" "}
-            <span style={{ color: t.metalBright }}>four ways to put it to work</span>.
+            {closer}
           </div>
         </div>
       </div>

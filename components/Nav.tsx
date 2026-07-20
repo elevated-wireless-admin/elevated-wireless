@@ -8,6 +8,7 @@ const LINKS: { label: string; href: string }[] = [
   { label: "Platform", href: "#platform" },
   { label: "Partner", href: "#partner" },
   { label: "Team", href: "#team" },
+  { label: "Universities", href: "/universities/" },
   { label: "Contact", href: "#contact" },
 ];
 

@@ -55,7 +55,7 @@ function NetworkDiagram() {
           opacity: 0.7,
         }}
       >
-        Fig. 6b — Network topology
+        Fig. 6a — Network topology
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" style={{ display: "block" }}>
         <defs>
@@ -279,7 +279,7 @@ function DataPyramid() {
           opacity: 0.7,
         }}
       >
-        Fig. 6c — Analytics maturity
+        Fig. 6b — Analytics maturity
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" style={{ display: "block" }}>
         <defs>
@@ -417,20 +417,7 @@ type Row = {
 
 const ROWS: Row[] = [
   {
-    label: "6a · Branded Experience",
-    title: "Your audience, monetized — without a sponsorship deal in the inbox.",
-    body: "The platform's most valuable layer is the one your customer sees. Your name on the service. Your voice in the communication. Member-only benefits no other audience can buy. The relationship deepens, the audience stays yours, and a recurring revenue line opens — without it ever reading as “their phone bill went up.”",
-    bullets: [
-      "Your brand on the experience end-to-end",
-      "Exclusive member-only benefits, category-locked per partner",
-      "Audience stays yours — no cross-carrier sharing, no list commingling",
-      "Shaped per partner — no one-size-fits-all rollout",
-    ],
-    img: "editorial · branded experience",
-    src: "/img/platform-6c.jpg",
-  },
-  {
-    label: "6b · Network + Operations",
+    label: "6a · Network + Operations",
     title: "Verizon 5G, end-to-end.",
     body: "Connectivity via our MVNO partnership. SIM provisioning, device activation, billing, customer support, regulatory compliance, carrier reporting — all handled.",
     bullets: [
@@ -442,7 +429,7 @@ const ROWS: Row[] = [
     diagram: "network",
   },
   {
-    label: "6c · Data + Intelligence",
+    label: "6b · Data + Intelligence",
     title: "Descriptive to prescriptive.",
     body: "Purpose-built analytics across every layer of the business. We don't just run the wireless; we learn from it.",
     bullets: [
@@ -452,6 +439,19 @@ const ROWS: Row[] = [
       "Partner dashboards and A/B testing infrastructure",
     ],
     diagram: "pyramid",
+  },
+  {
+    label: "6c · Marketplace",
+    title: "And the extras that make members stay",
+    body: "On top of the service itself, every brand can switch on a curated marketplace of partner perks, experiences, and expert access for its subscribers. It's not the pitch — it's the retention layer. Your members get more than a signal; you get subscribers who stay.",
+    bullets: [
+      "Curated partner perks, experiences, and expert access",
+      "Category-locked per partner — never generic rewards",
+      "Audience stays yours — no cross-carrier sharing, no list commingling",
+      "Switched on per brand — a retention layer, not the pitch",
+    ],
+    img: "editorial · member perks",
+    src: "/img/platform-6c.jpg",
   },
 ];
 

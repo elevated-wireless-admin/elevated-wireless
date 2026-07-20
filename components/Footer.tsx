@@ -41,9 +41,9 @@ export function Footer() {
           <div>
             <Wordmark color={t.ink} withMark markRing={t.ink} size={15} />
             <p style={{ fontSize: 14, lineHeight: 1.55, opacity: 0.7, marginTop: 16, maxWidth: 340 }}>
-              Premium wireless. Direct access.
+              Your brand. Our wireless company.
               <br />
-              <span style={{ fontStyle: "italic" }}>Built to be run. Built to be licensed.</span>
+              <span style={{ fontStyle: "italic" }}>A revenue stream that compounds.</span>
             </p>
           </div>
           {COLS.map((col) => (
