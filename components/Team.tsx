@@ -67,11 +67,11 @@ const ADVISORS: Person[] = [
     c: "15+ years in mobile. Holds a patent for wireless network inter-technology handoffs. Strategic advisor to Wi-Charge. Reach Mobile is the carrier layer beneath Elevated.",
   },
   {
-    n: "Jules Pearson",
-    r: "Co-Founder & Dir. BD, Reach Mobile",
-    img: "/img/team/jules.jpg",
-    hero: "Digital-first, customer-first.",
-    c: "Creative leader with a track record deploying digital-first products that move the needle on customer experience. Self-described 'Professional Troublemaker.'",
+    n: "Jim Poole",
+    r: "Founder & CEO, NuCalm",
+    img: "/img/team/jim-poole.jpg",
+    hero: "The world's only patented neuroscience tech.",
+    c: "CEO and Founder of NuCalm — patented neuroscience technology, validated by Harvard and NASA.",
   },
   {
     n: "Rich Goldstein",

@@ -1,0 +1,315 @@
+"use client";
+
+import { CSSProperties } from "react";
+import { tokens as t } from "@/lib/tokens";
+import { EWMark, Label, Reveal } from "./primitives";
+
+// ————————————————————————————————————————————————
+// University Hero — navy, matches homepage type system,
+// design-moment treatment on the $10 line.
+// ————————————————————————————————————————————————
+export function UniversityHero() {
+  return (
+    <section
+      id="top"
+      data-screen-label="U1 Hero"
+      className="ew-pad-md"
+      style={{
+        background: t.navy,
+        color: t.paper,
+        padding: "120px 56px 140px",
+        position: "relative",
+        overflow: "hidden",
+        minHeight: 720,
+      }}
+    >
+      {/* Quiet decorative mark, top-right */}
+      <div
+        aria-hidden="true"
+        className="ew-hero-rail"
+        style={{ position: "absolute", top: 40, right: 72, opacity: 0.9 }}
+      >
+        <EWMark size={56} ring={t.metalBright} ink={t.metalBright} />
+      </div>
+
+      <Reveal>
+        <div style={{ maxWidth: 1400, display: "flex", flexDirection: "column", gap: 32 }}>
+          <Label style={{ color: t.metalBright, letterSpacing: "0.34em" }}>
+            For Universities &amp; Athletics
+          </Label>
+
+          <h1
+            style={{
+              fontFamily: t.sansDisplay,
+              fontSize: "clamp(56px, 7.4vw, 108px)",
+              lineHeight: 0.98,
+              fontWeight: 500,
+              letterSpacing: "-0.03em",
+              margin: 0,
+              maxWidth: 1240,
+            }}
+          >
+            A new revenue stream for your university.
+            <br />
+            Not a new business.
+          </h1>
+
+          <p
+            style={{
+              fontFamily: t.sans,
+              fontSize: 18,
+              lineHeight: 1.55,
+              maxWidth: 720,
+              opacity: 0.82,
+              margin: "12px 0 0",
+            }}
+          >
+            Elevated turns your fan base into a branded wireless service — your school&apos;s name,
+            the Verizon 5G network, operated entirely by us. Your only job is the one you&apos;re
+            already the best in the world at: reaching your fans. You earn{" "}
+            <span style={{ color: t.metalBright, fontWeight: 700, whiteSpace: "nowrap" }}>
+              $10 per subscriber, every month.
+            </span>
+          </p>
+
+          <div style={{ display: "flex", gap: 14, marginTop: 20 }}>
+            <a
+              href="mailto:partnerships@getelevatedwireless.com?subject=University%20Briefing"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                padding: "16px 26px",
+                background: t.metalBright,
+                color: t.navy,
+                fontFamily: t.mono,
+                fontSize: 12,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                fontWeight: 600,
+              }}
+            >
+              Request the University Briefing
+              <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1 }}>→</span>
+            </a>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+// ————————————————————————————————————————————————
+// The Math — replaces Category on /universities
+// ————————————————————————————————————————————————
+const STATS = [
+  { subs: "25,000", label: "subscribers", figure: "$3M", note: "a year in recurring revenue" },
+  { subs: "100,000", label: "subscribers", figure: "$12M", note: "a year in recurring revenue" },
+];
+
+export function UniversityMath() {
+  return (
+    <section
+      id="math"
+      data-screen-label="U2 The Math"
+      className="ew-pad-md"
+      style={{
+        background: t.paper,
+        color: t.ink,
+        padding: "140px 56px",
+        borderBottom: `1px solid ${t.line}`,
+      }}
+    >
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Math</Label>
+        <h2
+          style={{
+            fontFamily: t.sansDisplay,
+            fontSize: "clamp(42px, 5.6vw, 72px)",
+            lineHeight: 1.02,
+            fontWeight: 500,
+            letterSpacing: "-0.025em",
+            margin: "0 0 48px",
+            maxWidth: 1100,
+          }}
+        >
+          Your fans already pay for wireless. Just not to you.
+        </h2>
+
+        <p style={{ fontSize: 18, lineHeight: 1.6, margin: "0 0 72px", maxWidth: 820 }}>
+          Every fan in your stadium pays a carrier every month — and feels nothing for it. Move a
+          fraction of that loyalty to a service carrying your name and the math gets loud fast:
+          25,000 subscribers is $3 million a year in recurring revenue. 100,000 is $12 million. No
+          inventory, no capital, no new staff.
+        </p>
+
+        <div
+          className="ew-stack-md"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 40,
+            borderTop: `1px solid ${t.line}`,
+          }}
+        >
+          {STATS.map((s, i) => (
+            <Reveal key={s.subs} delay={i * 80}>
+              <div style={{ paddingTop: 32 }}>
+                <div
+                  style={{
+                    fontFamily: t.mono,
+                    fontSize: 12,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    opacity: 0.6,
+                    marginBottom: 20,
+                  }}
+                >
+                  {s.subs} {s.label}
+                </div>
+                <div
+                  style={{
+                    fontFamily: t.sansDisplay,
+                    fontSize: "clamp(56px, 7vw, 96px)",
+                    fontWeight: 500,
+                    lineHeight: 0.9,
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  {s.figure}
+                </div>
+                <div style={{ fontSize: 15, opacity: 0.7, marginTop: 14 }}>{s.note}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ————————————————————————————————————————————————
+// Built to fit — how it fits college-sports structure
+// ————————————————————————————————————————————————
+export function UniversityFit() {
+  return (
+    <section
+      data-screen-label="U4 The Fit"
+      className="ew-pad-md"
+      style={{
+        background: t.paperDim,
+        color: t.ink,
+        padding: "140px 56px",
+        borderTop: `1px solid ${t.line}`,
+        borderBottom: `1px solid ${t.line}`,
+      }}
+    >
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <div
+          className="ew-stack-md"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 80,
+            alignItems: "start",
+          }}
+        >
+          <div>
+            <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Fit</Label>
+            <h2
+              style={{
+                fontFamily: t.sansDisplay,
+                fontSize: "clamp(40px, 5vw, 64px)",
+                lineHeight: 1.04,
+                fontWeight: 500,
+                letterSpacing: "-0.025em",
+                margin: 0,
+              }}
+            >
+              Built to fit the structure you already have.
+            </h2>
+          </div>
+          <p style={{ fontSize: 18, lineHeight: 1.65, opacity: 0.85, margin: 0, paddingTop: 8 }}>
+            We work within your existing multimedia-rights and collective relationships — not
+            around them. Whether your properties are managed in-house or by a rights partner, the
+            wireless program plugs into the channels and agreements already in place, and everyone
+            in the value chain participates.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ————————————————————————————————————————————————
+// Launch — single-CTA panel (no investor line)
+// ————————————————————————————————————————————————
+export function UniversityLaunch() {
+  return (
+    <section
+      id="partner"
+      data-screen-label="U6 Launch"
+      className="ew-pad-md"
+      style={{
+        background: t.navy,
+        color: t.paper,
+        padding: "140px 56px",
+      }}
+    >
+      <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
+          <Label style={{ color: t.metal, marginBottom: 24, opacity: 0.75 }}>What&apos;s Next</Label>
+          <h2
+            style={{
+              fontFamily: t.sansDisplay,
+              fontSize: "clamp(48px, 7vw, 88px)",
+              lineHeight: 1.0,
+              fontWeight: 500,
+              letterSpacing: "-0.03em",
+              margin: 0,
+            }}
+          >
+            For universities.
+          </h2>
+        </div>
+
+        <Reveal>
+          <div
+            style={{
+              maxWidth: 640,
+              margin: "0 auto",
+              padding: "40px 0",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              gap: 24,
+            }}
+          >
+            <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.82, margin: 0, maxWidth: 520 }}>
+              A branded wireless revenue stream for your program — your name on it, operated
+              entirely by us, paying $10 per subscriber every month. Zero operational lift on
+              campus.
+            </p>
+            <a
+              href="mailto:partnerships@getelevatedwireless.com?subject=University%20Briefing"
+              style={{
+                padding: "14px 22px",
+                background: "transparent",
+                color: t.paper,
+                border: `1px solid ${t.metal}`,
+                fontFamily: t.mono,
+                fontSize: 12,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                marginTop: 8,
+              } as CSSProperties}
+            >
+              Request the university briefing →
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

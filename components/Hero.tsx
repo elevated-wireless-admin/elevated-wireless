@@ -4,17 +4,18 @@ import { useEffect } from "react";
 import { tokens as t } from "@/lib/tokens";
 import { EWMark, Label, Reveal } from "./primitives";
 
-function AccessWord() {
+function RoyaltyPhrase() {
+  // The design-moment word treatment, moved off "ACCESS" onto the $10 line.
   return (
     <span
       style={{
-        display: "inline-block",
         color: t.metalBright,
         fontWeight: 700,
-        letterSpacing: "0.04em",
+        letterSpacing: "0.01em",
+        whiteSpace: "nowrap",
       }}
     >
-      ACCESS.
+      $10 per subscriber, every month.
     </span>
   );
 }
@@ -22,10 +23,10 @@ function AccessWord() {
 function useHeroAmbient() {
   useEffect(() => {
     const phrases = [
-      "Operator sessions · monthly",
-      "AI advisor bench · live",
-      "Curated perks · by category",
-      "Member introductions · quiet",
+      "Verizon 5G · nationwide",
+      "$10 per subscriber · monthly",
+      "Fully operated · your brand",
+      "Launch in weeks · not quarters",
     ];
     let phraseIdx = 0;
     const signalEl = document.querySelector<HTMLElement>("[data-hero-signal]");
@@ -236,7 +237,7 @@ function HeroRightRail() {
             }}
           />
           <span data-hero-signal style={{ display: "inline-block" }}>
-            Operator sessions · monthly
+            Verizon 5G · nationwide
           </span>
         </div>
         <Label style={{ color: t.metal, opacity: 0.45 }}>
@@ -275,17 +276,17 @@ export function Hero() {
           <h1
             style={{
               fontFamily: t.sansDisplay,
-              fontSize: "clamp(88px, 11.2vw, 156px)",
-              lineHeight: 0.94,
+              fontSize: "clamp(64px, 8.4vw, 120px)",
+              lineHeight: 0.98,
               fontWeight: 500,
               letterSpacing: "-0.03em",
               margin: 0,
               maxWidth: 1340,
             }}
           >
-            The next evolution
+            Be the phone company
             <br />
-            of wireless is <AccessWord />
+            for the people who love you.
           </h1>
 
           <p
@@ -293,18 +294,19 @@ export function Hero() {
               fontFamily: t.sans,
               fontSize: 18,
               lineHeight: 1.55,
-              maxWidth: 640,
+              maxWidth: 680,
               opacity: 0.82,
               margin: "12px 0 0",
             }}
           >
-            Elevated turns a premium audience into a profitable wireless company — Verizon 5G,
-            fully operated, branded as yours, royalties on every subscriber.
+            Elevated turns your audience into a branded wireless service you never have to run —
+            Verizon 5G, fully operated, your name on it. You promote it. We handle everything else.
+            You earn <RoyaltyPhrase />
           </p>
 
-          <div style={{ display: "flex", gap: 14, marginTop: 20 }}>
+          <div style={{ display: "flex", gap: 14, marginTop: 20, flexWrap: "wrap" }}>
             <a
-              href="#category"
+              href="#partner"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -319,8 +321,28 @@ export function Hero() {
                 fontWeight: 600,
               }}
             >
-              Learn More
-              <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1, fontWeight: 500 }}>↓</span>
+              Launch Your Brand
+              <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1, fontWeight: 500 }}>→</span>
+            </a>
+            <a
+              href="mailto:hello@getelevatedwireless.com?subject=Join%20Elevated"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 10,
+                padding: "16px 26px",
+                background: "transparent",
+                color: t.paper,
+                border: `1px solid ${t.metal}`,
+                fontFamily: t.mono,
+                fontSize: 12,
+                letterSpacing: "0.22em",
+                textTransform: "uppercase",
+                fontWeight: 600,
+              }}
+            >
+              Join Elevated
+              <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1, fontWeight: 500 }}>→</span>
             </a>
           </div>
         </div>
