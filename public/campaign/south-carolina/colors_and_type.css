@@ -1,0 +1,281 @@
+/* ============================================================
+   GAMECOCK WIRELESS — Design System Foundations  ·  "STADIUM"
+   colors_and_type.css
+   ------------------------------------------------------------
+   Direction A (STADIUM). Bold / athletic / confident.
+   Palette: USC garnet #73000A + WHITE.  NO beige.
+   Surfaces alternate garnet ↔ white; the only fills are garnet,
+   white, and faint garnet-on-white washes + garnet→deep gradients.
+   Type: Bebas Neue (condensed all-caps display) + Archivo (body/UI).
+   Corners: crisp (2–8px). Signature motif: the skewed accent tab
+   + the diagonal garnet cut. Rally mark: "Forever to Thee."
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&display=swap');
+
+:root {
+  /* ---------- BRAND COLOR : GARNET ---------- */
+  --crimson:        #73000A;  /* primary — USC garnet #73000A, official */
+  --crimson-deep:   #550008;  /* hover / pressed */
+  --crimson-900:    #3D0006;  /* deep band / gradient end */
+  --crimson-ink:    #170509;  /* darkest garnet-black — "close" sections */
+  --crimson-700:    #82101E;
+  --crimson-bright: #A81D39;  /* energetic accent — the tab, hot CTAs */
+
+  /* ---------- GARNET → WHITE TINTS  (replaces beige) ---------- */
+  --red-50:  #FCF5F6;   /* faintest wash — barely-there relief on white */
+  --red-100: #F8E9EC;   /* light wash surface */
+  --red-200: #EFD2D8;   /* hairlines / card edges on white */
+  --red-300: #DFB0BA;   /* stronger dividers */
+
+  /* ---------- INK (text) ---------- */
+  --ink:     #16110F;   /* primary text — warm near-black */
+  --ink-800: #2B221F;
+  --ink-600: #4C403B;   /* secondary text */
+  --ink-400: #7A6A64;   /* muted / captions */
+  --ink-200: #B3A39D;   /* disabled / faint */
+
+  /* ---------- SURFACES ---------- */
+  --bg:           #FFFFFF;          /* dominant white surface */
+  --bg-wash:      var(--red-50);    /* faint red-white relief band */
+  --bg-raised:    #FFFFFF;
+  --bg-crimson:   var(--crimson);   /* crimson sections */
+  --bg-ink:       var(--crimson-ink); /* deep crimson-black sections */
+  --fg:           var(--ink);
+  --fg-muted:     var(--ink-400);
+  --fg-on-crimson:#FBF0F2;          /* off-white on garnet */
+  --fg-on-ink:    #F8E9EC;
+
+  /* ---------- SEMANTIC ---------- */
+  --line:        var(--red-200);
+  --line-strong: var(--red-300);
+  --line-on-crimson: rgba(255,255,255,.18);
+  --focus:       var(--crimson-bright);
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif; /* condensed all-caps — headlines, wordmark, big numerals */
+  --font-sans:    'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif; /* body + UI + eyebrows */
+
+  /* ---------- TYPE TOKENS ---------- */
+  --tracking-display: .012em;   /* Bebas reads better slightly open */
+  --tracking-eyebrow: .22em;    /* uppercase eyebrows */
+  --tracking-button:  .04em;
+  --leading-display: .94;
+  --leading-snug: 1.1;
+  --leading-body: 1.6;
+
+  /* ---------- RADII (crisp / athletic) ---------- */
+  --r-xs: 2px;
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 8px;
+  --r-pill: 999px;
+
+  /* ---------- SPACING (4pt base) ---------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+  --s-9: 96px; --s-10: 128px;
+
+  /* ---------- ELEVATION (warm, restrained) ---------- */
+  --shadow-sm: 0 1px 2px rgba(40,7,7,.07), 0 1px 1px rgba(40,7,7,.05);
+  --shadow-md: 0 6px 18px rgba(40,7,7,.10), 0 2px 5px rgba(40,7,7,.06);
+  --shadow-lg: 0 22px 52px rgba(40,7,7,.18), 0 6px 14px rgba(40,7,7,.10);
+  --shadow-crimson: 0 14px 32px rgba(200,16,46,.40);
+
+  /* ---------- GRADIENTS (red & white only) ---------- */
+  --grad-crimson:      linear-gradient(150deg, var(--crimson-bright) 0%, var(--crimson) 60%, var(--crimson-deep) 100%);
+  --grad-crimson-flat: linear-gradient(150deg, var(--crimson) 0%, var(--crimson-deep) 100%);
+  --grad-band:         linear-gradient(120deg, var(--crimson) 0%, var(--crimson-900) 70%, var(--crimson-ink) 100%);
+  --grad-wash:         linear-gradient(180deg, #FFFFFF 0%, var(--red-50) 100%);
+  --grad-wash-up:      linear-gradient(180deg, var(--red-50) 0%, #FFFFFF 100%);
+  /* hero scrim: dramatic diagonal crimson over photography */
+  --grad-hero-scrim:
+      linear-gradient(98deg, var(--crimson-900) 0%, rgba(78,0,0,.94) 30%, rgba(110,0,0,.55) 58%, rgba(110,0,0,.08) 82%, transparent 100%),
+      linear-gradient(0deg, rgba(20,4,4,.82) 0%, transparent 32%);
+
+  /* ---------- MOTIF ---------- */
+  --tab-skew: -22deg;   /* @kind other */ /* the skewed accent tab / chevron */
+  --stripe-w: 12px;     /* red/white diagonal accent band width */
+  --diag-stripe: repeating-linear-gradient(
+      135deg,
+      var(--crimson) 0, var(--crimson) var(--stripe-w),
+      #FFFFFF var(--stripe-w), #FFFFFF calc(var(--stripe-w) * 2));
+}
+
+/* ============================================================
+   BASE ELEMENTS
+   ============================================================ */
+body {
+  font-family: var(--font-sans);
+  color: var(--fg);
+  background: var(--bg);
+  font-size: 17px;
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- DISPLAY / HEADINGS (Bebas, ALL-CAPS) ---------- */
+.display-xl, .h0 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(64px, 8.5vw, 132px);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase; color: var(--ink); margin: 0;
+}
+h1, .h1 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(48px, 6vw, 88px);
+  line-height: .96; letter-spacing: var(--tracking-display);
+  text-transform: uppercase; color: var(--ink); margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(36px, 4.2vw, 60px);
+  line-height: 1; letter-spacing: var(--tracking-display);
+  text-transform: uppercase; color: var(--ink); margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.02; letter-spacing: .02em;
+  text-transform: uppercase; color: var(--ink); margin: 0;
+}
+/* h4 stays in the sans for sub-labels (Bebas too small reads poorly) */
+h4, .h4 {
+  font-family: var(--font-sans); font-weight: 800;
+  font-size: 19px; line-height: 1.25; letter-spacing: -.01em;
+  color: var(--ink); margin: 0;
+}
+
+/* ---------- EYEBROW / KICKER ---------- */
+.eyebrow {
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: 13px; letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase; color: var(--crimson);
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.eyebrow--ink { color: var(--ink-400); }
+.eyebrow--on-crimson { color: var(--fg-on-crimson); }
+
+/* ---------- BODY ---------- */
+p, .body {
+  font-family: var(--font-sans); font-weight: 400;
+  font-size: 17px; line-height: var(--leading-body);
+  color: var(--ink-800); margin: 0 0 1em; text-wrap: pretty;
+}
+.lead { font-size: 21px; line-height: 1.5; color: var(--ink-600); font-weight: 500; }
+.small, small { font-size: 14px; line-height: 1.5; }
+.fineprint { font-size: 12px; line-height: 1.45; color: var(--ink-400); }
+
+/* ---------- RALLY CRY — "Forever to Thee." ---------- */
+.rally {
+  font-family: var(--font-display); font-weight: 400;
+  text-transform: uppercase; letter-spacing: .04em;
+  color: var(--crimson-bright); line-height: 1;
+}
+
+/* ============================================================
+   WORDMARK
+   ============================================================ */
+.hw-wordmark {
+  display: inline-flex; align-items: baseline; gap: .34em;
+  font-family: var(--font-display); font-weight: 400;
+  text-transform: uppercase; letter-spacing: .07em;
+  line-height: 1; font-size: 29px; color: var(--ink);
+}
+.hw-wordmark .hw-2 { opacity: .55; }              /* second word recedes */
+.hw-wordmark--reverse { color: #fff; }
+.hw-wordmark--reverse .hw-2 { color: #fff; opacity: .6; }
+
+/* ============================================================
+   MOTIF UTILITIES
+   ============================================================ */
+/* the skewed accent tab (under eyebrows / as a marker) */
+.tab {
+  display: inline-block; width: 46px; height: 8px;
+  background: var(--crimson-bright);
+  transform: skewX(var(--tab-skew));
+}
+.tab--sm { width: 30px; height: 6px; }
+.tab--ink { background: var(--crimson); }
+/* diagonal red/white accent rule */
+.diag-rule { height: 10px; width: 100%; background: var(--diag-stripe); }
+.diag-rule--thick { height: 16px; }
+/* diagonal cut — a hard angled edge on crimson blocks */
+.cut-top { clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%); }
+.cut-bottom { clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%); }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  font-family: var(--font-sans); font-weight: 800;
+  font-size: 15px; letter-spacing: var(--tracking-button);
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 16px 28px; border-radius: var(--r-sm);
+  border: 1.5px solid transparent; cursor: pointer; text-decoration: none;
+  line-height: 1;
+  transition: background .16s ease, color .16s ease, transform .08s ease, border-color .16s ease, box-shadow .16s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--crimson); color: var(--fg-on-crimson); }
+.btn--primary:hover { background: var(--crimson-deep); }
+.btn--hot { background: var(--crimson-bright); color: #fff; box-shadow: var(--shadow-crimson); }
+.btn--hot:hover { background: #A60E27; }
+.btn--secondary { background: transparent; color: var(--crimson); border-color: var(--crimson); }
+.btn--secondary:hover { background: var(--crimson); color: var(--fg-on-crimson); }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn--ghost:hover { border-color: var(--ink); }
+.btn--on-crimson { background: #fff; color: var(--crimson); }
+.btn--on-crimson:hover { background: var(--red-50); }
+.btn--outline-light { background: rgba(255,255,255,.06); color: #fff; border-color: rgba(255,255,255,.7); }
+.btn--outline-light:hover { background: rgba(255,255,255,.14); }
+.btn--lg { padding: 19px 36px; font-size: 17px; }
+.btn--sm { padding: 11px 18px; font-size: 13px; }
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm);
+}
+.card--wash { background: var(--bg-wash); }
+.card--crimson { background: var(--crimson); color: var(--fg-on-crimson); border-color: transparent; }
+.card--ink { background: var(--crimson-ink); color: var(--fg-on-ink); border-color: transparent; }
+/* tab-marked card: skewed crimson tab in the top-left */
+.card--tab { position: relative; overflow: hidden; }
+.card--tab::before {
+  content: ""; position: absolute; top: 18px; left: 18px;
+  width: 36px; height: 7px; background: var(--crimson-bright);
+  transform: skewX(var(--tab-skew));
+}
+
+/* ---------- BADGE / PILL ---------- */
+.badge {
+  font-family: var(--font-sans); font-weight: 800;
+  font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+  padding: 6px 12px; border-radius: var(--r-sm);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.badge--crimson { background: var(--crimson); color: var(--fg-on-crimson); }
+.badge--hot { background: var(--crimson-bright); color: #fff; }
+.badge--wash { background: var(--red-100); color: var(--crimson); }
+.badge--outline { background: transparent; color: var(--crimson); box-shadow: inset 0 0 0 1.5px var(--crimson); }
+
+/* big athletic numeral (value math / stats) */
+.numeral {
+  font-family: var(--font-display); font-weight: 400;
+  line-height: .82; color: var(--crimson);
+  letter-spacing: .01em;
+}
+
+/* ---------- FOCUS ---------- */
+:where(a,button,input,select,textarea):focus-visible {
+  outline: 2.5px solid var(--focus); outline-offset: 2px; border-radius: var(--r-xs);
+}
