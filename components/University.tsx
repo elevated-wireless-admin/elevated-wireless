@@ -6,7 +6,7 @@ import { EWMark, Label, Reveal } from "./primitives";
 
 // ————————————————————————————————————————————————
 // University Hero — navy, matches homepage type system,
-// design-moment treatment on the $10 line.
+// design-moment treatment on the royalty line.
 // ————————————————————————————————————————————————
 export function UniversityHero() {
   return (
@@ -68,7 +68,7 @@ export function UniversityHero() {
             the Verizon 5G network, operated entirely by us. Your only job is the one you&apos;re
             already the best in the world at: reaching your fans. You earn{" "}
             <span style={{ color: t.metalBright, fontWeight: 700, whiteSpace: "nowrap" }}>
-              $10 per subscriber, every month.
+              a monthly royalty on every subscriber.
             </span>
           </p>
 
@@ -100,18 +100,14 @@ export function UniversityHero() {
 }
 
 // ————————————————————————————————————————————————
-// The Math — replaces Category on /universities
+// The Opportunity — replaces Category on /universities
+// (numbers removed per revision; royalty is negotiated per-deal)
 // ————————————————————————————————————————————————
-const STATS = [
-  { subs: "25,000", label: "subscribers", figure: "$3M", note: "a year in recurring revenue" },
-  { subs: "100,000", label: "subscribers", figure: "$12M", note: "a year in recurring revenue" },
-];
-
 export function UniversityMath() {
   return (
     <section
-      id="math"
-      data-screen-label="U2 The Math"
+      id="opportunity"
+      data-screen-label="U2 The Opportunity"
       className="ew-pad-md"
       style={{
         background: t.paper,
@@ -121,7 +117,7 @@ export function UniversityMath() {
       }}
     >
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-        <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Math</Label>
+        <Label style={{ opacity: 0.6, marginBottom: 28 }}>The Opportunity</Label>
         <h2
           style={{
             fontFamily: t.sansDisplay,
@@ -136,53 +132,12 @@ export function UniversityMath() {
           Your fans already pay for wireless. Just not to you.
         </h2>
 
-        <p style={{ fontSize: 18, lineHeight: 1.6, margin: "0 0 72px", maxWidth: 820 }}>
+        <p style={{ fontSize: 20, lineHeight: 1.6, margin: 0, maxWidth: 900 }}>
           Every fan in your stadium pays a carrier every month — and feels nothing for it. Move a
-          fraction of that loyalty to a service carrying your name and the math gets loud fast:
-          25,000 subscribers is $3 million a year in recurring revenue. 100,000 is $12 million. No
-          inventory, no capital, no new staff.
+          fraction of that loyalty to a service carrying your name and it becomes recurring revenue
+          your program controls — growing with every subscriber, season after season. No inventory,
+          no capital, no new staff.
         </p>
-
-        <div
-          className="ew-stack-md"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 40,
-            borderTop: `1px solid ${t.line}`,
-          }}
-        >
-          {STATS.map((s, i) => (
-            <Reveal key={s.subs} delay={i * 80}>
-              <div style={{ paddingTop: 32 }}>
-                <div
-                  style={{
-                    fontFamily: t.mono,
-                    fontSize: 12,
-                    letterSpacing: "0.14em",
-                    textTransform: "uppercase",
-                    opacity: 0.6,
-                    marginBottom: 20,
-                  }}
-                >
-                  {s.subs} {s.label}
-                </div>
-                <div
-                  style={{
-                    fontFamily: t.sansDisplay,
-                    fontSize: "clamp(56px, 7vw, 96px)",
-                    fontWeight: 500,
-                    lineHeight: 0.9,
-                    letterSpacing: "-0.03em",
-                  }}
-                >
-                  {s.figure}
-                </div>
-                <div style={{ fontSize: 15, opacity: 0.7, marginTop: 14 }}>{s.note}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
     </section>
   );
@@ -288,8 +243,8 @@ export function UniversityLaunch() {
           >
             <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.82, margin: 0, maxWidth: 520 }}>
               A branded wireless revenue stream for your program — your name on it, operated
-              entirely by us, paying $10 per subscriber every month. Zero operational lift on
-              campus.
+              entirely by us, paying you a royalty on every subscriber, every month. Zero
+              operational lift on campus.
             </p>
             <a
               href="mailto:partnerships@getelevatedwireless.com?subject=University%20Briefing"

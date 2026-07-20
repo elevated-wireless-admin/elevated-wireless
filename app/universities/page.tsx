@@ -23,7 +23,7 @@ const UNIVERSITY_LANES = [
   {
     n: "03",
     title: "You earn.",
-    body: "$10 per subscriber, per month, in revenue your program controls.",
+    body: "A monthly royalty on every subscriber — revenue your program controls.",
   },
 ];
 

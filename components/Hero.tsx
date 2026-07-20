@@ -5,7 +5,7 @@ import { tokens as t } from "@/lib/tokens";
 import { EWMark, Label, Reveal } from "./primitives";
 
 function RoyaltyPhrase() {
-  // The design-moment word treatment, moved off "ACCESS" onto the $10 line.
+  // The design-moment word treatment, moved off "ACCESS" onto the royalty line.
   return (
     <span
       style={{
@@ -15,7 +15,7 @@ function RoyaltyPhrase() {
         whiteSpace: "nowrap",
       }}
     >
-      $10 per subscriber, every month.
+      a royalty on every subscriber, every month.
     </span>
   );
 }
@@ -24,7 +24,7 @@ function useHeroAmbient() {
   useEffect(() => {
     const phrases = [
       "Verizon 5G · nationwide",
-      "$10 per subscriber · monthly",
+      "Monthly royalties",
       "Fully operated · your brand",
       "Launch in weeks · not quarters",
     ];
@@ -325,7 +325,7 @@ export function Hero() {
               <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1, fontWeight: 500 }}>→</span>
             </a>
             <a
-              href="mailto:hello@getelevatedwireless.com?subject=Join%20Elevated"
+              href="mailto:partnerships@getelevatedwireless.com?subject=Join%20Elevated"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

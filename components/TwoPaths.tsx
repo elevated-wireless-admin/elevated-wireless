@@ -60,8 +60,8 @@ export function TwoPaths() {
             </h3>
             <p style={{ fontSize: 16, lineHeight: 1.6, opacity: 0.82, margin: 0, maxWidth: 520 }}>
               Own an audience that trusts you? Turn it into a wireless revenue stream — branded
-              as yours, operated entirely by us, paying $10 per subscriber every month. Two-week
-              onboarding once terms are signed.
+              as yours, operated entirely by us, paying you a royalty on every subscriber, every
+              month. Two-week onboarding once terms are signed.
             </p>
             <a
               href="mailto:partnerships@getelevatedwireless.com?subject=Partner%20Briefing"

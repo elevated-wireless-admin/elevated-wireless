@@ -20,7 +20,7 @@ const HOME_LANES: DealLane[] = [
   {
     n: "03",
     title: "You earn.",
-    body: "$10 per subscriber, per month, from the first subscriber. Recurring, compounding, and yours — a revenue stream that grows every time you do what you already do: reach the people who love you.",
+    body: "A royalty on every subscriber, every month, from the first subscriber. Recurring, compounding, and yours — a revenue stream that grows every time you do what you already do: reach the people who love you.",
   },
 ];
 
