@@ -20,8 +20,9 @@ uploads. No workflow or config changes are needed — pushing to `main` publishe
 ## Tokens / brand
 - `colors_and_type.css` — the "STADIUM" design system (USC garnet `#73000A` + white, Bebas
   Neue + Archivo). `styles.css` just `@import`s it.
-- `assets/img/` — placeholder photography. All 4 images are **inherited Indiana stand-ins** and
-  must be replaced with licensed South Carolina / Gamecocks photography before any real launch.
+- `assets/img/` — real supplied South Carolina photography: `wbs-stadium-fans.jpg` (Williams-Brice
+  hero), `cocky-mascot.jpg` (Cocky on the field, magazine print ad), `campus-tour.jpg` (campus-tour
+  family shot). **Licensing/usage rights still to be confirmed** before any real launch.
 
 > Independent fan-identity concept — **not affiliated with, endorsed by, or sponsored by the
 > University of South Carolina.** All pricing, savings, perks, names, dates and stats are
