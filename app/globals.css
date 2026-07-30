@@ -84,12 +84,33 @@ a { color: inherit; text-decoration: none; }
 .ew-range::-moz-range-track { height: 2px; background: #C7CCD6; }
 .ew-range::-moz-range-thumb { width: 16px; height: 16px; background: #0E1E3A; border: none; border-radius: 0; }
 
-/* Hero split — copy left, calculator card right; stacks when narrow */
-.ew-hero-split { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 48px 56px; }
+/* Hero split — copy left, calculator card right; stacks when narrow.
+   Copy centers against the card; card rides up toward the headline plane. */
+.ew-hero-split { display: flex; flex-wrap: wrap; align-items: center; gap: 48px 56px; }
 .ew-hero-split > .ew-hero-copy { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 32px; }
-.ew-hero-split > .ew-calc-card { flex: 0 1 420px; min-width: 320px; }
+.ew-hero-split > .ew-calc-card { flex: 0 1 420px; min-width: 320px; margin-top: -56px; box-shadow: 0 0 60px rgba(196, 202, 213, 0.16), 0 0 140px rgba(196, 202, 213, 0.07); }
 @media (max-width: 1100px) {
-  .ew-hero-split > .ew-calc-card { flex-basis: 100%; max-width: 520px; }
+  .ew-hero-split > .ew-calc-card { flex-basis: 100%; max-width: 520px; margin-top: 0; }
+}
+
+/* Money-numeral shimmer — slow steel sheen sweeping the result figures */
+.ew-num-shimmer {
+  background-image: linear-gradient(105deg, #0E1E3A 44%, #64769A 50%, #0E1E3A 56%);
+  background-size: 300% 100%;
+  background-position: 150% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #0E1E3A;
+  animation: ew-num-shimmer 4600ms linear infinite;
+}
+@keyframes ew-num-shimmer {
+  0% { background-position: 150% 0; }
+  55% { background-position: -150% 0; }
+  100% { background-position: -150% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ew-num-shimmer { animation: none; background-image: none; -webkit-text-fill-color: currentColor; }
 }
 
 /* Team/advisor portrait hover — lift from grayscale(1) to grayscale(0.2) */

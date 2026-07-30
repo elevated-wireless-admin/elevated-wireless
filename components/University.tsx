@@ -18,7 +18,7 @@ export function UniversityHero() {
       style={{
         background: t.navy,
         color: t.paper,
-        padding: "88px 56px 120px",
+        padding: "120px 56px 120px",
         position: "relative",
         overflow: "hidden",
         minHeight: 720,
@@ -38,7 +38,7 @@ export function UniversityHero() {
           <h1
             style={{
               fontFamily: t.sansDisplay,
-              fontSize: "clamp(56px, 7.4vw, 108px)",
+              fontSize: "clamp(54px, 6.6vw, 100px)",
               lineHeight: 0.98,
               fontWeight: 500,
               letterSpacing: "-0.03em",
@@ -46,9 +46,9 @@ export function UniversityHero() {
               maxWidth: 1240,
             }}
           >
-            A new revenue stream for your university.
+            A new revenue stream
             <br />
-            Not a new business.
+            for your university.
           </h1>
 
           <div className="ew-hero-split">

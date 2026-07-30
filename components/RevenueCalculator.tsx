@@ -174,6 +174,7 @@ export function RevenueCalculator({
       style={{
         background: t.paper,
         color: t.ink,
+        borderTop: `3px solid ${t.metalBright}`,
         padding: "24px 26px 22px",
         display: "flex",
         flexDirection: "column",
@@ -277,6 +278,7 @@ export function RevenueCalculator({
             style={{ display: "flex", alignItems: "baseline", gap: 10, whiteSpace: "nowrap" }}
           >
             <span
+              className="ew-num-shimmer"
               style={{
                 fontFamily: t.sansDisplay,
                 fontSize: "clamp(30px, 2.6vw, 36px)",

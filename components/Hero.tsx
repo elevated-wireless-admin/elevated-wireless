@@ -30,7 +30,7 @@ export function Hero() {
       style={{
         background: t.navy,
         color: t.paper,
-        padding: "88px 56px 120px",
+        padding: "104px 56px 120px",
         position: "relative",
         overflow: "hidden",
         minHeight: 720,
