@@ -3,6 +3,7 @@
 import { CSSProperties } from "react";
 import { tokens as t } from "@/lib/tokens";
 import { EWMark, Reveal } from "./primitives";
+import { RevenueCalculator } from "./RevenueCalculator";
 
 // ————————————————————————————————————————————————
 // University Hero — navy, matches homepage type system,
@@ -17,7 +18,7 @@ export function UniversityHero() {
       style={{
         background: t.navy,
         color: t.paper,
-        padding: "120px 56px 140px",
+        padding: "120px 56px 120px",
         position: "relative",
         overflow: "hidden",
         minHeight: 720,
@@ -37,7 +38,7 @@ export function UniversityHero() {
           <h1
             style={{
               fontFamily: t.sansDisplay,
-              fontSize: "clamp(56px, 7.4vw, 108px)",
+              fontSize: "clamp(54px, 6.6vw, 100px)",
               lineHeight: 0.98,
               fontWeight: 500,
               letterSpacing: "-0.03em",
@@ -45,49 +46,55 @@ export function UniversityHero() {
               maxWidth: 1240,
             }}
           >
-            A new revenue stream for your university.
+            A new revenue stream
             <br />
-            Not a new business.
+            for your university.
           </h1>
 
-          <p
-            style={{
-              fontFamily: t.sans,
-              fontSize: 18,
-              lineHeight: 1.55,
-              maxWidth: 720,
-              opacity: 0.82,
-              margin: "12px 0 0",
-            }}
-          >
-            Elevated turns your fan base into a branded wireless service — your school&apos;s name,
-            the Verizon 5G network, operated entirely by us. Your only job is the one you&apos;re
-            already the best in the world at: reaching your fans. You earn{" "}
-            <span style={{ color: t.metalBright, fontWeight: 700, whiteSpace: "nowrap" }}>
-              a monthly royalty on every subscriber.
-            </span>
-          </p>
+          <div className="ew-hero-split">
+            <div className="ew-hero-copy">
+              <p
+                style={{
+                  fontFamily: t.sans,
+                  fontSize: 18,
+                  lineHeight: 1.55,
+                  maxWidth: 720,
+                  opacity: 0.82,
+                  margin: 0,
+                }}
+              >
+                Elevated turns your fan base into a branded wireless service — your school&apos;s name,
+                the Verizon 5G network, operated entirely by us. Your only job is the one you&apos;re
+                already the best in the world at: reaching your fans. You earn{" "}
+                <span style={{ color: t.metalBright, fontWeight: 700, whiteSpace: "nowrap" }}>
+                  a monthly royalty on every subscriber.
+                </span>
+              </p>
 
-          <div style={{ display: "flex", gap: 14, marginTop: 20 }}>
-            <a
-              href="mailto:partnerships@getelevatedwireless.com?subject=University%20Briefing"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 10,
-                padding: "16px 26px",
-                background: t.metalBright,
-                color: t.navy,
-                fontFamily: t.mono,
-                fontSize: 12,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                fontWeight: 600,
-              }}
-            >
-              Request the University Briefing
-              <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1 }}>→</span>
-            </a>
+              <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+                <a
+                  href="mailto:partnerships@getelevatedwireless.com?subject=University%20Briefing"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 10,
+                    padding: "16px 26px",
+                    background: t.metalBright,
+                    color: t.navy,
+                    fontFamily: t.mono,
+                    fontSize: 12,
+                    letterSpacing: "0.22em",
+                    textTransform: "uppercase",
+                    fontWeight: 600,
+                  }}
+                >
+                  Request the University Briefing
+                  <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1 }}>→</span>
+                </a>
+              </div>
+            </div>
+
+            <RevenueCalculator variant="university" className="ew-calc-card" />
           </div>
         </div>
       </Reveal>
