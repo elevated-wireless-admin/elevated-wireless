@@ -36,7 +36,10 @@ export function RevenueBand({
       style={{
         background: t.base,
         color: t.paper,
-        padding: "86px 56px 96px",
+        // The section above is black too, so this top padding stacks with the
+        // hero's bottom padding into a single unbroken gap. Kept deliberately
+        // short for that reason.
+        padding: "60px 56px 96px",
         position: "relative",
         overflow: "hidden",
       }}

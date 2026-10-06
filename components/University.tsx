@@ -17,10 +17,13 @@ export function UniversityHero() {
       style={{
         background: t.base,
         color: t.paper,
-        padding: "120px 56px 120px",
+        // Sized for copy and a CTA. It used to carry the calculator too, and
+        // keeping 720px of minimum height after that moved out left a third of
+        // the section as empty black above the band below.
+        padding: "120px 56px 72px",
         position: "relative",
         overflow: "hidden",
-        minHeight: 720,
+        minHeight: 520,
       }}
     >
       {/* Quiet decorative mark, top-right */}

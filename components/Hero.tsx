@@ -145,7 +145,7 @@ function Shell({ children, style }: { children: ReactNode; style?: CSSProperties
 // ————————————————————————————————————————————————
 function GradientHero() {
   return (
-    <Shell style={{ padding: "104px 56px 104px", minHeight: 600 }}>
+    <Shell style={{ padding: "104px 56px 72px", minHeight: 560 }}>
       <HeroPhoto
         scrim={`linear-gradient(to bottom,
           rgba(0,0,0,0.74) 0%,
