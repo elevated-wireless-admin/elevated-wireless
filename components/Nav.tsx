@@ -1,18 +1,48 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { tokens as t } from "@/lib/tokens";
 import { Wordmark } from "./primitives";
 
-const LINKS: { label: string; href: string }[] = [
-  { label: "Access", href: "#access" },
-  { label: "Platform", href: "#platform" },
-  { label: "Partner", href: "#partner" },
-  { label: "Team", href: "#team" },
+// Which in-page anchors actually exist on each route. Kept here so a nav link
+// can never point at a section that is not on the current page, which is how
+// ACCESS, PLATFORM and TEAM all silently broke before.
+const ANCHORS: Record<string, string[]> = {
+  "/": ["#top", "#platform", "#partner", "#contact"],
+  "/universities": ["#partner", "#contact"],
+  "/about": ["#contact"],
+};
+
+export type NavLink = { label: string; href: string; anchor?: string };
+
+// href is the always-safe cross-page destination. anchor is used instead when
+// that section exists on the page the visitor is already on, so the link
+// scrolls rather than reloading.
+// Home is deliberately the only link that carries #top. Every page renders an
+// element with that id, so listing "#top" in the ANCHORS of a sub-page made the
+// lookup below match there too and Home resolved to "#top" on /about and
+// /universities: it scrolled to the top of the page you were already on and
+// never went home. Home is a page destination, not a section, so it only
+// degrades to a scroll on "/" itself.
+export const HOME: NavLink = { label: "Home", href: "/", anchor: "#top" };
+
+export const LINKS: NavLink[] = [
+  HOME,
+  { label: "Platform", href: "/#platform", anchor: "#platform" },
+  { label: "Partner", href: "/#partner", anchor: "#partner" },
+  { label: "About Us", href: "/about/" },
   { label: "Universities", href: "/universities/" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact", anchor: "#contact" },
 ];
 
+export function resolveHref(link: NavLink, pathname: string | null): string {
+  const route = (pathname || "/").replace(/\/+$/, "") || "/";
+  if (link.anchor && (ANCHORS[route] || []).includes(link.anchor)) return link.anchor;
+  return link.href;
+}
+
 export function Nav() {
+  const pathname = usePathname();
   return (
     <nav
       className="ew-nav ew-pad-md"
@@ -21,8 +51,11 @@ export function Nav() {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "22px 56px",
+        // Persistent accent chrome at the top of the viewport, the web
+        // equivalent of the spine running down the deck's slides.
+        borderTop: `3px solid ${t.accent}`,
         borderBottom: `1px solid ${t.line}`,
-        background: "rgba(245, 246, 248, 0.82)",
+        background: "rgba(255, 255, 255, 0.86)",
         color: t.ink,
         position: "sticky",
         top: 0,
@@ -31,10 +64,11 @@ export function Nav() {
         WebkitBackdropFilter: "blur(10px)",
       }}
     >
-      <a href="#top" aria-label="Elevated Wireless — Home">
+      <a href={resolveHref(HOME, pathname)} aria-label="Elevated Wireless home">
         <Wordmark color={t.ink} withMark markRing={t.ink} size={13} />
       </a>
       <div
+        className="ew-nav-links"
         style={{
           display: "flex",
           gap: 32,
@@ -45,7 +79,11 @@ export function Nav() {
         }}
       >
         {LINKS.map((x) => (
-          <a key={x.label} href={x.href} style={{ color: t.ink, opacity: 0.75 }}>
+          <a
+            key={x.label}
+            href={resolveHref(x, pathname)}
+            style={{ color: t.ink, opacity: 0.75 }}
+          >
             {x.label}
           </a>
         ))}
@@ -53,11 +91,13 @@ export function Nav() {
       <a
         href="mailto:partnerships@getelevatedwireless.com"
         style={{
-          padding: "10px 18px",
-          border: `1px solid ${t.ink}`,
-          color: t.ink,
+          padding: "11px 20px",
+          background: t.accent,
+          border: `1px solid ${t.accent}`,
+          color: t.paper,
           fontFamily: t.mono,
           fontSize: 11,
+          fontWeight: 600,
           letterSpacing: "0.2em",
           textTransform: "uppercase",
         }}
