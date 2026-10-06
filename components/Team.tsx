@@ -214,7 +214,7 @@ export function Team() {
                   <div
                     style={{
                       fontFamily: t.mono,
-                      fontSize: 11.5,
+                      fontSize: 12.5,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
                       opacity: 0.55,

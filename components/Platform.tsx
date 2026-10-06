@@ -169,7 +169,7 @@ function NetworkDiagram() {
                   fill={t.metal}
                   style={{
                     fontFamily: t.mono,
-                    fontSize: 11.5,
+                    fontSize: 12.5,
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
                   }}
@@ -195,7 +195,7 @@ function NetworkDiagram() {
             fill={t.metal}
             style={{
               fontFamily: t.mono,
-              fontSize: 11,
+              fontSize: 12,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
             }}
@@ -307,7 +307,7 @@ function RowContent({ r }: { r: Row }) {
                 color: t.accent,
                 flexShrink: 0,
                 fontFamily: t.mono,
-                fontSize: 11,
+                fontSize: 12,
                 fontWeight: 700,
                 paddingTop: 3,
               }}

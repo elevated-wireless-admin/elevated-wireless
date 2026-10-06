@@ -3,7 +3,6 @@
 import { CSSProperties } from "react";
 import { tokens as t } from "@/lib/tokens";
 import { EWMark, Reveal } from "./primitives";
-import { RevenueCalculator } from "./RevenueCalculator";
 
 // ————————————————————————————————————————————————
 // University Hero — navy, matches homepage type system,
@@ -18,10 +17,13 @@ export function UniversityHero() {
       style={{
         background: t.base,
         color: t.paper,
-        padding: "120px 56px 120px",
+        // Sized for copy and a CTA. It used to carry the calculator too, and
+        // keeping 720px of minimum height after that moved out left a third of
+        // the section as empty black above the band below.
+        padding: "120px 56px 72px",
         position: "relative",
         overflow: "hidden",
-        minHeight: 720,
+        minHeight: 520,
       }}
     >
       {/* Quiet decorative mark, top-right */}
@@ -68,8 +70,6 @@ export function UniversityHero() {
 
             </div>
 
-            <RevenueCalculator variant="university" className="ew-calc-card" />
-
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 <a
                   href="mailto:partnerships@getelevatedwireless.com?subject=University%20Briefing"
@@ -81,7 +81,7 @@ export function UniversityHero() {
                     background: t.accent,
                     color: t.paper,
                     fontFamily: t.mono,
-                    fontSize: 12,
+                    fontSize: 13,
                     letterSpacing: "0.22em",
                     textTransform: "uppercase",
                     fontWeight: 600,
@@ -250,7 +250,7 @@ export function UniversityLaunch() {
                 color: t.paper,
                 border: `1px solid ${t.metal}`,
                 fontFamily: t.mono,
-                fontSize: 12,
+                fontSize: 13,
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
                 marginTop: 8,

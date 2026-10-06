@@ -18,6 +18,11 @@ export const tokens = {
   metal: "#6F7171",
   metalBright: "#A7A7A7",
   accent: "#CD040B",
+  // Same hue, lifted. #CD040B on black is 3.62:1, which is under AA for
+  // small text — it is a field colour, and it was never meant to carry
+  // 12px labels on a dark ground. Used only where accent-coloured small
+  // text sits on black; the fields themselves stay #CD040B.
+  accentOnDark: "#F2353E",
   sansDisplay:
     "var(--font-display), 'Helvetica Neue', Helvetica, Arial, sans-serif",
   sans: "var(--font-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif",

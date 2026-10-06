@@ -20,9 +20,9 @@ export function Label({
     <div
       style={{
         fontFamily: t.mono,
-        fontSize: 11,
-        fontWeight: 500,
-        letterSpacing: "0.22em",
+        fontSize: 12.5,
+        fontWeight: 600,
+        letterSpacing: "0.17em",
         textTransform: "uppercase",
         color: color || "currentColor",
         ...style,
@@ -240,9 +240,12 @@ export function Eyebrow({
     <div
       style={{
         fontFamily: t.mono,
-        fontSize: 10,
-        fontWeight: 500,
-        letterSpacing: "0.26em",
+        // 10px at 0.26em put 2.6px between letters — a quarter of the em. At
+        // that size the tracking destroys the word shape faster than it adds
+        // elegance, so it comes down as the size goes up.
+        fontSize: 12,
+        fontWeight: 600,
+        letterSpacing: "0.18em",
         textTransform: "uppercase",
         color: color || (onDark ? t.metalBright : t.metal),
         ...style,
@@ -321,7 +324,7 @@ export function SectionRail({
           paddingBottom: 12,
         }}
       >
-        <Eyebrow onDark={onDark} color={t.accent}>
+        <Eyebrow onDark={onDark} color={onDark ? t.accentOnDark : t.accent}>
           {label}
         </Eyebrow>
         {index && <Eyebrow onDark={onDark}>{index}</Eyebrow>}
@@ -389,7 +392,7 @@ export function Stat({
     >
       {eyebrow && (
         <Eyebrow
-          color={filled ? "rgba(255,255,255,0.75)" : undefined}
+          color={filled ? "rgba(255,255,255,0.92)" : undefined}
           onDark={onDark}
           style={{ marginBottom: 18 }}
         >
@@ -443,7 +446,7 @@ export function Stat({
       )}
       {note && (
         <Eyebrow
-          color={filled ? "rgba(255,255,255,0.7)" : undefined}
+          color={filled ? "rgba(255,255,255,0.92)" : undefined}
           onDark={onDark}
           style={{ marginTop: "auto", paddingTop: 22 }}
         >
@@ -510,7 +513,7 @@ export function AccentBar({
         <EWMark size={38} ring={t.paper} ink={t.paper} />
         <div>
           {eyebrow && (
-            <Eyebrow color="rgba(255,255,255,0.75)" style={{ marginBottom: 7 }}>
+            <Eyebrow color="rgba(255,255,255,0.92)" style={{ marginBottom: 7 }}>
               {eyebrow}
             </Eyebrow>
           )}
@@ -530,7 +533,7 @@ export function AccentBar({
       <div
         style={{
           fontFamily: t.mono,
-          fontSize: 12,
+          fontSize: 13,
           letterSpacing: "0.14em",
           textTransform: "uppercase",
           display: "flex",

@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Access } from "@/components/Access";
+import { RevenueBand } from "@/components/RevenueBand";
 import { Footer } from "@/components/Footer";
 import {
   UniversityHero,
@@ -31,6 +32,12 @@ export default function Universities() {
     <>
       <Nav />
       <UniversityHero />
+      <RevenueBand
+        variant="university"
+        eyebrow="Run the numbers"
+        heading="What your fan base is worth, at any size."
+        screenLabel="U2 Calculator"
+      />
       <UniversityMath />
       <Access
         id="deal"

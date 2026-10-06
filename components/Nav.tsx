@@ -73,7 +73,7 @@ export function Nav() {
           display: "flex",
           gap: 32,
           fontFamily: t.mono,
-          fontSize: 12,
+          fontSize: 13,
           letterSpacing: "0.18em",
           textTransform: "uppercase",
         }}
@@ -96,7 +96,7 @@ export function Nav() {
           border: `1px solid ${t.accent}`,
           color: t.paper,
           fontFamily: t.mono,
-          fontSize: 11,
+          fontSize: 12,
           fontWeight: 600,
           letterSpacing: "0.2em",
           textTransform: "uppercase",

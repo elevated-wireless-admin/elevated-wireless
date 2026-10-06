@@ -167,7 +167,7 @@ export function Access({
             padding: "56px 48px",
           }}
         >
-          <Eyebrow color="rgba(255,255,255,0.75)" style={{ marginBottom: 22 }}>
+          <Eyebrow color="rgba(255,255,255,0.92)" style={{ marginBottom: 22 }}>
             The trade
           </Eyebrow>
           <div

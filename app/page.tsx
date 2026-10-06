@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
+import { RevenueBand } from "@/components/RevenueBand";
 import { Category } from "@/components/Category";
 import { Access } from "@/components/Access";
 import { Platform } from "@/components/Platform";
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <Nav />
       <Hero />
+      <RevenueBand />
       <Category />
       <Access />
       <Platform />
