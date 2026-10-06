@@ -86,7 +86,13 @@ a { color: inherit; text-decoration: none; }
 
 /* The calculator's own band, beneath the hero. */
 .ew-calc-frame { display: flex; flex-direction: column; gap: 16px; margin-bottom: 34px; }
-.ew-calc-card { width: 100%; max-width: 900px; }
+/* No max-width of its own. Every structural block on the page sits on the
+   same grid as the 1240 container — Category's stat row, the section
+   rules, this band's own heading frame. Capping the panel at 900 left its
+   right edge 322px short of all of them, which is what read as the panel
+   being out of alignment with the page. The curve keeps its slope from the
+   25M axis, not from the panel being narrow. */
+.ew-calc-card { width: 100%; }
 
 /* Hero: proposition only. The calculator moved out into its own band, so this
    stack is copy and a CTA. */

@@ -159,7 +159,7 @@ const VARIANTS: Record<
   home: {
     audienceLabel: "Your audience",
     convLabel: "Share who sign up",
-    noun: "people",
+    noun: "fans",
     // NOTE: this is the number a first-time visitor sees before touching
     // anything — 10M at 1% opens the page on $1M a month. Lower it here if
     // the opening figure should read more conservative.
