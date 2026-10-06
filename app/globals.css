@@ -57,33 +57,33 @@ a { color: inherit; text-decoration: none; }
 .ew-range { appearance: none; -webkit-appearance: none; width: 100%; height: 22px; margin: 0; padding: 0; background: transparent; cursor: pointer; display: block; position: relative; z-index: 2; }
 .ew-range:focus { outline: none; }
 .ew-range:focus-visible { outline: 2px solid #CD040B; outline-offset: 5px; }
-.ew-range::-webkit-slider-runnable-track { height: 3px; background: linear-gradient(to right, #000000 0 var(--pct, 0%), #E8E9E9 var(--pct, 0%) 100%); }
+.ew-range::-webkit-slider-runnable-track { height: 3px; background: linear-gradient(to right, #FFFFFF 0 var(--pct, 0%), rgba(255,255,255,0.18) var(--pct, 0%) 100%); }
 .ew-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 3px; height: 21px; margin-top: -9px; background: #CD040B; border: none; border-radius: 0; transition: height 140ms ease, margin-top 140ms ease; }
 .ew-range:hover::-webkit-slider-thumb, .ew-range:active::-webkit-slider-thumb { height: 27px; margin-top: -12px; }
-.ew-range::-moz-range-track { height: 3px; background: #E8E9E9; }
-.ew-range::-moz-range-progress { height: 3px; background: #000000; }
+.ew-range::-moz-range-track { height: 3px; background: rgba(255,255,255,0.18); }
+.ew-range::-moz-range-progress { height: 3px; background: #FFFFFF; }
 .ew-range::-moz-range-thumb { width: 3px; height: 21px; background: #CD040B; border: none; border-radius: 0; }
 
 /* The plotted value curve. Stretched by the SVG, so it spans the card at
    any width without the path being recomputed on resize. */
-.ew-calc-plot { display: block; width: 100%; height: 108px; overflow: visible; }
+.ew-calc-plot { display: block; width: 100%; height: 64px; overflow: visible; }
 
 /* Rail + axis ticks, so the 500K–100M span is legible without dragging. */
 .ew-calc-rail { position: relative; padding-bottom: 18px; }
 .ew-calc-ticks { position: absolute; left: 0; right: 0; top: 18px; height: 15px; pointer-events: none; }
 .ew-calc-tick { position: absolute; top: 0; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.ew-calc-tick i { display: block; width: 1px; height: 4px; background: #D8DADA; }
-.ew-calc-tick em { font-style: normal; font-family: var(--font-mono), ui-monospace, monospace; font-size: 9.5px; letter-spacing: 0.06em; color: #6F7171; white-space: nowrap; }
+.ew-calc-tick i { display: block; width: 1px; height: 4px; background: rgba(255,255,255,0.3); }
+.ew-calc-tick em { font-style: normal; font-family: var(--font-mono), ui-monospace, monospace; font-size: 9.5px; letter-spacing: 0.06em; color: rgba(255,255,255,0.5); white-space: nowrap; }
 
 /* Crown: the figure leads, the year sits beside it rather than beneath. */
 .ew-calc-crown { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
 .ew-calc-yearly { text-align: right; display: flex; flex-direction: column; gap: 3px; }
-.ew-calc-foot { display: flex; justify-content: space-between; align-items: center; gap: 22px; flex-wrap: wrap; border-top: 1px solid #D8DADA; padding-top: 18px; }
+.ew-calc-foot { display: flex; justify-content: space-between; align-items: center; gap: 22px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.13); padding-top: 18px; }
 .ew-calc-conv { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 
 /* The calculator's own band, beneath the hero. */
 .ew-calc-frame { display: flex; flex-direction: column; gap: 16px; margin-bottom: 34px; }
-.ew-calc-card { width: 100%; max-width: 1100px; box-shadow: 0 0 80px rgba(255, 255, 255, 0.10), 0 0 180px rgba(255, 255, 255, 0.05); }
+.ew-calc-card { width: 100%; max-width: 1100px; }
 
 /* Hero: proposition only. The calculator moved out into its own band, so this
    stack is copy and a CTA. */
@@ -92,13 +92,13 @@ a { color: inherit; text-decoration: none; }
 
 /* Money-numeral shimmer: slow sheen sweeping the result figures */
 .ew-num-shimmer {
-  background-image: linear-gradient(105deg, #000000 44%, #6F7171 50%, #000000 56%);
+  background-image: linear-gradient(105deg, #FFFFFF 44%, #A7A7A7 50%, #FFFFFF 56%);
   background-size: 300% 100%;
   background-position: 150% 0;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #000000;
+  color: #FFFFFF;
   animation: ew-num-shimmer 4600ms linear infinite;
 }
 @keyframes ew-num-shimmer {
@@ -139,7 +139,7 @@ a { color: inherit; text-decoration: none; }
   .ew-calc-crown { gap: 14px; }
   .ew-calc-yearly { text-align: left; }
   .ew-calc-foot { align-items: flex-start; gap: 16px; }
-  .ew-calc-plot { height: 84px; }
+  .ew-calc-plot { height: 52px; }
 
   .ew-nav { flex-wrap: wrap; gap: 14px 0; justify-content: center; }
   .ew-nav-links { flex-wrap: wrap; justify-content: center; gap: 10px 18px !important; font-size: 11px !important; letter-spacing: 0.12em !important; }

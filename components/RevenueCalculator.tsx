@@ -8,26 +8,39 @@ import { tokens as t } from "@/lib/tokens";
 // audience × conversion × $10/sub/mo royalty → monthly + yearly.
 //
 // The control is a plotted value curve rather than a bare slider: dragging
-// moves a marker along the whole 500K–100M ladder, so a partner sees what the
-// deal is worth at every other audience size, not only their own. That is the
-// argument the decks make, made interactive.
+// moves a marker along the ladder, so a partner sees what the deal is worth at
+// every other audience size, not only their own.
 //
-// Note the curve bends because the audience ladder below is log-spaced, not
-// because the model is non-linear — royalty is strictly linear in audience.
+// Two things about the look are deliberate.
+//
+// It is a DARK panel. It used to be a white card, which made it the highest
+// contrast event on an otherwise black page — the thing read as a widget
+// dropped onto the site rather than part of it, which is the lead-magnet
+// quality the move out of the hero was meant to avoid.
+//
+// The ladder stops at 25M, not 100M. On a 100M axis a 10M audience sits at a
+// tenth of full height, so the curve was pinned to the floor across most of
+// its width and the plot was mostly empty. 25M is also the honest top of the
+// range: the biggest college fan bases are around 10M, and a 100M ceiling
+// existed to flatter nobody. The trade is that an audience above 25M can no
+// longer be modelled here.
+//
+// Note the curve bends because the ladder is log-spaced, not because the
+// model is non-linear. Royalty is strictly linear in audience.
 // ————————————————————————————————————————————————
 
-// Audience stops, 500K → 100M. Log-ish ladder, densest in the
-// 500K–10M band where every university and collective lives.
+// Audience stops, 500K → 25M. Densest in the 500K–10M band where every
+// university and collective actually lives.
 function buildStops(): number[] {
   const stops: number[] = [];
   for (let v = 500_000; v < 2_000_000; v += 100_000) stops.push(v);
   for (let v = 2_000_000; v < 10_000_000; v += 250_000) stops.push(v);
-  for (let v = 10_000_000; v < 30_000_000; v += 1_000_000) stops.push(v);
-  for (let v = 30_000_000; v <= 100_000_000; v += 5_000_000) stops.push(v);
+  for (let v = 10_000_000; v <= 25_000_000; v += 500_000) stops.push(v);
   return stops;
 }
 const STOPS = buildStops();
 const LAST = STOPS.length - 1;
+const CEILING = STOPS[LAST];
 
 function nearestStopIndex(value: number): number {
   let best = 0;
@@ -40,9 +53,9 @@ function nearestStopIndex(value: number): number {
 const ROYALTY = 10;
 const CONV_PRESETS = [0.5, 1, 2];
 
-// Ticks a partner can locate themselves against. Kept to five so the axis
-// stays readable at the narrow end of the band.
-const TICKS = [1_000_000, 10_000_000, 25_000_000, 50_000_000, 100_000_000];
+// Four ticks, not five. The axis is shorter now and the labels were the
+// fiddliest thing in the panel.
+const TICKS = [1_000_000, 5_000_000, 10_000_000, 25_000_000];
 
 function fmtInt(n: number): string {
   return Math.round(n).toLocaleString("en-US");
@@ -101,35 +114,32 @@ function useCountUp(target: number, duration = 550): number {
 
 // ——— Curve geometry ———————————————————————————
 // Plotted in a fixed viewBox and stretched by the SVG, so the shape is
-// computed once per conversion rate rather than on every resize.
+// computed once per conversion rate rather than on every resize. Half the
+// height it was: with the curve now filling its box vertically it reads as a
+// measure rather than as a chart with a void above it.
 const VB_W = 1000;
-const VB_H = 118;
-const PAD_TOP = 6;
+const VB_H = 64;
+const PAD_TOP = 4;
 
 function curvePoints(conv: number): string {
-  // Revenue is linear in audience, so normalising against the top stop makes
-  // the path independent of conversion — but we recompute anyway to keep the
-  // relationship explicit for anyone reading this later.
-  const max = STOPS[LAST] * (conv / 100) * ROYALTY;
+  const max = CEILING * (conv / 100) * ROYALTY;
   const pts: string[] = [];
-  for (let i = 0; i <= LAST; i += 3) {
+  for (let i = 0; i <= LAST; i += 2) {
     const x = (i / LAST) * VB_W;
     const rev = STOPS[i] * (conv / 100) * ROYALTY;
-    const y = VB_H - (rev / max) * (VB_H - PAD_TOP) - 2;
+    const y = VB_H - (rev / max) * (VB_H - PAD_TOP) - 1;
     pts.push(`${x.toFixed(1)} ${y.toFixed(1)}`);
   }
-  const xEnd = VB_W;
-  const yEnd = VB_H - (VB_H - PAD_TOP) - 2;
-  pts.push(`${xEnd} ${yEnd.toFixed(1)}`);
+  pts.push(`${VB_W} ${(PAD_TOP - 1).toFixed(1)}`);
   return pts.map((p, i) => (i === 0 ? "M" : "L") + p).join(" ");
 }
 
 function markerAt(idx: number, conv: number): { x: number; y: number } {
-  const max = STOPS[LAST] * (conv / 100) * ROYALTY;
+  const max = CEILING * (conv / 100) * ROYALTY;
   const rev = STOPS[idx] * (conv / 100) * ROYALTY;
   return {
     x: (idx / LAST) * VB_W,
-    y: VB_H - (rev / max) * (VB_H - PAD_TOP) - 2,
+    y: VB_H - (rev / max) * (VB_H - PAD_TOP) - 1,
   };
 }
 
@@ -168,6 +178,11 @@ const VARIANTS: Record<
   },
 };
 
+// Panel-local colours. The instrument always sits on the dark band, so these
+// are plain values rather than a light/dark pair.
+const DIM = "rgba(255,255,255,0.52)";
+const RULE = "rgba(255,255,255,0.13)";
+
 export function RevenueCalculator({
   variant,
   className,
@@ -188,7 +203,7 @@ export function RevenueCalculator({
     const q = new URLSearchParams(window.location.search);
     const a = Number(q.get("audience"));
     if (Number.isFinite(a) && a > 0) {
-      setAudienceIdx(nearestStopIndex(Math.min(100_000_000, Math.max(500_000, a))));
+      setAudienceIdx(nearestStopIndex(Math.min(CEILING, Math.max(500_000, a))));
     }
     const c = Number(q.get("conv"));
     if (Number.isFinite(c) && c > 0) {
@@ -215,7 +230,7 @@ export function RevenueCalculator({
     fontWeight: 600,
     letterSpacing: "0.17em",
     textTransform: "uppercase",
-    color: t.metal,
+    color: DIM,
     margin: 0,
   };
 
@@ -223,13 +238,13 @@ export function RevenueCalculator({
     <div
       className={className}
       style={{
-        background: t.paper,
-        color: t.ink,
+        background: t.baseMid,
+        color: t.paper,
         borderTop: `3px solid ${t.accent}`,
-        padding: "28px 32px 26px",
+        padding: "26px 30px 24px",
         display: "flex",
         flexDirection: "column",
-        gap: 20,
+        gap: 18,
       }}
     >
       {/* ——— Crown: the figure leads, the inputs follow ——— */}
@@ -280,7 +295,7 @@ export function RevenueCalculator({
           aria-hidden="true"
           focusable="false"
         >
-          <path d={`${path} L${VB_W} ${VB_H} L0 ${VB_H} Z`} fill="rgba(205,4,11,0.09)" />
+          <path d={`${path} L${VB_W} ${VB_H} L0 ${VB_H} Z`} fill="rgba(205,4,11,0.22)" />
           <path
             d={path}
             fill="none"
@@ -293,11 +308,11 @@ export function RevenueCalculator({
             x2={marker.x}
             y1={marker.y}
             y2={VB_H}
-            stroke={t.ink}
+            stroke="rgba(255,255,255,0.55)"
             strokeWidth={1}
             vectorEffect="non-scaling-stroke"
           />
-          <circle cx={marker.x} cy={marker.y} r={4.5} fill={t.accent} />
+          <circle cx={marker.x} cy={marker.y} r={4} fill={t.paper} />
         </svg>
 
         <div className="ew-calc-rail">
@@ -330,7 +345,7 @@ export function RevenueCalculator({
       </div>
 
       {/* ——— Conversion, disclosure, CTA ——— */}
-      <div className="ew-calc-foot">
+      <div className="ew-calc-foot" style={{ borderTopColor: RULE }}>
         <div className="ew-calc-conv">
           <span style={microLabel}>{v.convLabel}</span>
           <div style={{ display: "flex", gap: 6 }}>
@@ -349,9 +364,9 @@ export function RevenueCalculator({
                     letterSpacing: "0.12em",
                     fontWeight: 600,
                     cursor: "pointer",
-                    background: active ? t.base : "transparent",
-                    color: active ? t.paper : t.ink,
-                    border: `1px solid ${active ? t.base : t.line}`,
+                    background: active ? t.paper : "transparent",
+                    color: active ? t.ink : "rgba(255,255,255,0.8)",
+                    border: `1px solid ${active ? t.paper : "rgba(255,255,255,0.26)"}`,
                   }}
                 >
                   {fmtConv(c)}
@@ -372,8 +387,8 @@ export function RevenueCalculator({
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             fontWeight: 600,
-            color: t.base,
-            borderBottom: `1px solid ${t.metal}`,
+            color: t.paper,
+            borderBottom: "1px solid rgba(255,255,255,0.4)",
             paddingBottom: 4,
           }}
         >
@@ -384,23 +399,19 @@ export function RevenueCalculator({
         </a>
       </div>
 
-      {/* The number above is a model, and says so. Cheap to print, and it is
-          the difference between a projection and a promise in a first
-          meeting. */}
+      {/* The number above is a model, and says so. In a first meeting that is
+          the difference between a projection and a promise. */}
       <p
         style={{
           fontFamily: t.mono,
           fontSize: 10.5,
           letterSpacing: "0.04em",
-          color: t.metal,
+          color: "rgba(255,255,255,0.42)",
           margin: 0,
-          borderTop: `1px solid ${t.line}`,
-          paddingTop: 12,
         }}
       >
-        Illustrative. Assumes a ${ROYALTY} monthly royalty per subscriber and{" "}
-        {fmtInt(subs)} subscribers at {fmtConv(conv)} sign-up. Your terms are set in the
-        agreement.
+        Illustrative. Assumes a ${ROYALTY} monthly royalty per subscriber. Your terms
+        are set in the agreement.
       </p>
     </div>
   );
