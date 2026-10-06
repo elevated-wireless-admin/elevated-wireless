@@ -9,8 +9,8 @@ import { Wordmark } from "./primitives";
 // ACCESS, PLATFORM and TEAM all silently broke before.
 const ANCHORS: Record<string, string[]> = {
   "/": ["#top", "#platform", "#partner", "#contact"],
-  "/universities": ["#top", "#partner", "#contact"],
-  "/about": ["#top", "#contact"],
+  "/universities": ["#partner", "#contact"],
+  "/about": ["#contact"],
 };
 
 export type NavLink = { label: string; href: string; anchor?: string };
@@ -18,8 +18,16 @@ export type NavLink = { label: string; href: string; anchor?: string };
 // href is the always-safe cross-page destination. anchor is used instead when
 // that section exists on the page the visitor is already on, so the link
 // scrolls rather than reloading.
+// Home is deliberately the only link that carries #top. Every page renders an
+// element with that id, so listing "#top" in the ANCHORS of a sub-page made the
+// lookup below match there too and Home resolved to "#top" on /about and
+// /universities: it scrolled to the top of the page you were already on and
+// never went home. Home is a page destination, not a section, so it only
+// degrades to a scroll on "/" itself.
+export const HOME: NavLink = { label: "Home", href: "/", anchor: "#top" };
+
 export const LINKS: NavLink[] = [
-  { label: "Home", href: "/", anchor: "#top" },
+  HOME,
   { label: "Platform", href: "/#platform", anchor: "#platform" },
   { label: "Partner", href: "/#partner", anchor: "#partner" },
   { label: "About Us", href: "/about/" },
@@ -56,7 +64,7 @@ export function Nav() {
         WebkitBackdropFilter: "blur(10px)",
       }}
     >
-      <a href="#top" aria-label="Elevated Wireless home">
+      <a href={resolveHref(HOME, pathname)} aria-label="Elevated Wireless home">
         <Wordmark color={t.ink} withMark markRing={t.ink} size={13} />
       </a>
       <div
