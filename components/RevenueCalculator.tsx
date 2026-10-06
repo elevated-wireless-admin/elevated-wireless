@@ -223,7 +223,7 @@ export function RevenueCalculator({
 
   const microLabel: CSSProperties = {
     fontFamily: t.mono,
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: 600,
     letterSpacing: "0.15em",
     textTransform: "uppercase",
@@ -380,7 +380,7 @@ export function RevenueCalculator({
                   style={{
                     padding: "6px 13px",
                     fontFamily: t.mono,
-                    fontSize: 10.5,
+                    fontSize: 11.5,
                     letterSpacing: "0.12em",
                     fontWeight: 600,
                     cursor: "pointer",
@@ -403,7 +403,7 @@ export function RevenueCalculator({
             alignItems: "center",
             gap: 10,
             fontFamily: t.mono,
-            fontSize: 11.5,
+            fontSize: 12.5,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             fontWeight: 600,
@@ -424,7 +424,7 @@ export function RevenueCalculator({
       <p
         style={{
           fontFamily: t.mono,
-          fontSize: 11,
+          fontSize: 12,
           letterSpacing: "0.04em",
           color: "rgba(255,255,255,0.5)",
           margin: 0,

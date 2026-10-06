@@ -101,7 +101,7 @@ function CTA({ align = "center" }: { align?: "center" | "left" }) {
         background: t.accent,
         color: t.paper,
         fontFamily: t.mono,
-        fontSize: 12,
+        fontSize: 13,
         letterSpacing: "0.22em",
         textTransform: "uppercase",
         fontWeight: 600,
