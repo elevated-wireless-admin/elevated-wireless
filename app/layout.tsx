@@ -14,9 +14,13 @@ const body = Inter({
   variable: "--font-sans",
   display: "swap",
 });
+// 600 and 700 are loaded because the page asks for them: ~21 elements set a
+// mono weight above 500. With only 400/500 declared the browser was
+// synthesising those, and faux-bolding a monospace face at 10-11px smears the
+// glyph edges — which is most of why the small uppercase labels read fuzzy.
 const mono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-mono",
   display: "swap",
 });

@@ -177,7 +177,7 @@ const VARIANTS: Record<
 
 // Panel-local colours. The instrument always sits on the dark band, so these
 // are plain values rather than a light/dark pair.
-const DIM = "rgba(255,255,255,0.52)";
+const DIM = "rgba(255,255,255,0.6)";
 const RULE = "rgba(255,255,255,0.13)";
 
 export function RevenueCalculator({
@@ -223,9 +223,9 @@ export function RevenueCalculator({
 
   const microLabel: CSSProperties = {
     fontFamily: t.mono,
-    fontSize: 10.5,
+    fontSize: 11,
     fontWeight: 600,
-    letterSpacing: "0.17em",
+    letterSpacing: "0.15em",
     textTransform: "uppercase",
     color: DIM,
     margin: 0,
@@ -424,9 +424,9 @@ export function RevenueCalculator({
       <p
         style={{
           fontFamily: t.mono,
-          fontSize: 10.5,
+          fontSize: 11,
           letterSpacing: "0.04em",
-          color: "rgba(255,255,255,0.42)",
+          color: "rgba(255,255,255,0.5)",
           margin: 0,
         }}
       >

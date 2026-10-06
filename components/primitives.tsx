@@ -20,9 +20,9 @@ export function Label({
     <div
       style={{
         fontFamily: t.mono,
-        fontSize: 11,
-        fontWeight: 500,
-        letterSpacing: "0.22em",
+        fontSize: 11.5,
+        fontWeight: 600,
+        letterSpacing: "0.17em",
         textTransform: "uppercase",
         color: color || "currentColor",
         ...style,
@@ -240,9 +240,12 @@ export function Eyebrow({
     <div
       style={{
         fontFamily: t.mono,
-        fontSize: 10,
-        fontWeight: 500,
-        letterSpacing: "0.26em",
+        // 10px at 0.26em put 2.6px between letters — a quarter of the em. At
+        // that size the tracking destroys the word shape faster than it adds
+        // elegance, so it comes down as the size goes up.
+        fontSize: 11,
+        fontWeight: 600,
+        letterSpacing: "0.18em",
         textTransform: "uppercase",
         color: color || (onDark ? t.metalBright : t.metal),
         ...style,

@@ -73,7 +73,7 @@ a { color: inherit; text-decoration: none; }
 .ew-calc-ticks { position: absolute; left: 0; right: 0; top: 18px; height: 15px; pointer-events: none; }
 .ew-calc-tick { position: absolute; top: 0; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 3px; }
 .ew-calc-tick i { display: block; width: 1px; height: 4px; background: rgba(255,255,255,0.3); }
-.ew-calc-tick em { font-style: normal; font-family: var(--font-mono), ui-monospace, monospace; font-size: 9.5px; letter-spacing: 0.06em; color: rgba(255,255,255,0.5); white-space: nowrap; }
+.ew-calc-tick em { font-style: normal; font-family: var(--font-mono), ui-monospace, monospace; font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; color: rgba(255,255,255,0.58); white-space: nowrap; }
 
 /* Crown: the figure leads, the year sits beside it rather than beneath. */
 .ew-calc-crown { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
