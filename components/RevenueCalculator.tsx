@@ -107,7 +107,21 @@ function useCountUp(target: number, duration = 550): number {
       if (p < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    // requestAnimationFrame is suspended entirely in a backgrounded tab, and
+    // this hook is the only thing that writes the figure — so without a net
+    // the number silently sits on a stale value and the panel shows maths
+    // that does not match the audience above it. setTimeout is throttled in
+    // the background but still fires, so it can always land the final value.
+    const settle = setTimeout(() => {
+      if (current.current !== target) {
+        current.current = target;
+        setValue(target);
+      }
+    }, duration + 120);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(settle);
+    };
   }, [target, duration]);
   return value;
 }
@@ -157,7 +171,7 @@ const VARIANTS: Record<
 > = {
   home: {
     audienceLabel: "Audience size",
-    convLabel: "Share who sign up",
+    convLabel: "Select a conversion rate",
     // NOTE: this is the number a first-time visitor sees before touching
     // anything — 10M at 1% opens the page on $1M a month. Lower it here if
     // the opening figure should read more conservative.
@@ -307,7 +321,15 @@ export function RevenueCalculator({
           >
             {fmtInt(audience)}
           </p>
+          {/* Nothing else on the panel says the chart is interactive, and a
+              plotted curve does not read as a control the way a chunky slider
+              does. Persistent rather than dismissed on first drag: it has to
+              work for every first-time visitor, not just this one. */}
+          <span className="ew-calc-hint" aria-hidden="true">
+            &#8592; Drag to adjust &#8594;
+          </span>
         </div>
+      <div className="ew-calc-plotwrap">
         <svg
           className="ew-calc-plot"
           viewBox={`0 0 ${VB_W} ${VB_H}`}
@@ -335,33 +357,43 @@ export function RevenueCalculator({
           <circle cx={marker.x} cy={marker.y} r={4} fill={t.paper} />
         </svg>
 
-        <div className="ew-calc-rail">
-          <input
-            id={`ew-audience-${variant}`}
-            className="ew-range"
-            type="range"
-            min={0}
-            max={LAST}
-            step={1}
-            value={audienceIdx}
-            style={{ ["--pct" as string]: `${(audienceIdx / LAST) * 100}%` }}
-            aria-label={brand ? `${brand} fans` : v.audienceLabel}
-            aria-valuetext={fmtInt(audience)}
-            onChange={(e) => setAudienceIdx(Number(e.target.value))}
-          />
-          <div className="ew-calc-ticks" aria-hidden="true">
-            {TICKS.map((n) => (
-              <div
-                key={n}
-                className="ew-calc-tick"
-                style={{ left: `${(nearestStopIndex(n) / LAST) * 100}%` }}
-              >
-                <i />
-                <em>{fmtShort(n)}</em>
-              </div>
-            ))}
+        {/* Axis and handle are drawn here rather than as the range input's
+            own track and thumb. That frees the input to cover the entire
+            plot, so a click or drag anywhere on the chart works — previously
+            the only hit target was a 22px strip under it, and the chart
+            itself, which is the thing people reach for, did nothing. */}
+        <div className="ew-calc-axis" aria-hidden="true" />
+        <div
+          className="ew-calc-handle"
+          aria-hidden="true"
+          style={{ left: `${(audienceIdx / LAST) * 100}%` }}
+        />
+        <input
+          id={`ew-audience-${variant}`}
+          className="ew-range"
+          type="range"
+          min={0}
+          max={LAST}
+          step={1}
+          value={audienceIdx}
+          aria-label={brand ? `${brand} fans` : v.audienceLabel}
+          aria-valuetext={fmtInt(audience)}
+          onChange={(e) => setAudienceIdx(Number(e.target.value))}
+        />
+      </div>
+
+      <div className="ew-calc-ticks" aria-hidden="true">
+        {TICKS.map((n) => (
+          <div
+            key={n}
+            className="ew-calc-tick"
+            style={{ left: `${(nearestStopIndex(n) / LAST) * 100}%` }}
+          >
+            <i />
+            <em>{fmtShort(n)}</em>
           </div>
-        </div>
+        ))}
+      </div>
       </div>
 
       {/* ——— Conversion, disclosure, CTA ——— */}

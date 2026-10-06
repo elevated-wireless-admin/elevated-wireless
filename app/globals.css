@@ -48,29 +48,58 @@ a { color: inherit; text-decoration: none; }
 
 /* ————————————————————————————————————————————————
    Revenue calculator — the instrument
-   The old control was a 16px black square on a dead 2px line: no filled
-   portion, so nothing showed where you were in a 500K–100M range, and no
-   hover state, so it read inert before you touched it. The track now fills
-   behind the handle and the square becomes a narrow accent bar that grows
-   under the cursor — a cursor on a measure rather than a block on a line.
-   ———————————————————————————————————————————————— */
-.ew-range { appearance: none; -webkit-appearance: none; width: 100%; height: 22px; margin: 0; padding: 0; background: transparent; cursor: pointer; display: block; position: relative; z-index: 2; }
-.ew-range:focus { outline: none; }
-.ew-range:focus-visible { outline: 2px solid #CD040B; outline-offset: 5px; }
-.ew-range::-webkit-slider-runnable-track { height: 1px; background: rgba(255,255,255,0.16); }
-.ew-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 3px; height: 18px; margin-top: -8.5px; background: #CD040B; border: none; border-radius: 0; transition: height 140ms ease, margin-top 140ms ease; }
-.ew-range:hover::-webkit-slider-thumb, .ew-range:active::-webkit-slider-thumb { height: 24px; margin-top: -11.5px; }
-.ew-range::-moz-range-track { height: 1px; background: rgba(255,255,255,0.16); }
-.ew-range::-moz-range-progress { height: 1px; background: rgba(255,255,255,0.16); }
-.ew-range::-moz-range-thumb { width: 3px; height: 18px; background: #CD040B; border: none; border-radius: 0; }
 
-/* The plotted value curve. Stretched by the SVG, so it spans the card at
-   any width without the path being recomputed on resize. */
+   The range input is invisible and covers the entire plot. The axis line
+   and the handle are drawn as their own elements, positioned from state.
+   Two reasons: the thin accent handle a plotted curve wants is not a
+   convincing slider thumb, and more importantly the hit area used to be a
+   22px strip beneath the chart — people reach for the chart.
+   ———————————————————————————————————————————————— */
+.ew-calc-plotwrap { position: relative; padding-bottom: 10px; cursor: ew-resize; }
+.ew-calc-plotwrap:focus-within { outline: 2px solid #CD040B; outline-offset: 6px; }
+
+.ew-range {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  margin: 0; padding: 0;
+  opacity: 0; cursor: ew-resize;
+  appearance: none; -webkit-appearance: none; background: transparent;
+}
+.ew-range:focus { outline: none; }
+/* A generous invisible thumb so grabbing the handle is forgiving; clicking
+   anywhere else on the track jumps to that value, which is what we want. */
+.ew-range::-webkit-slider-runnable-track { height: 100%; background: transparent; }
+.ew-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 44px; background: transparent; border: none; }
+.ew-range::-moz-range-track { height: 100%; background: transparent; }
+.ew-range::-moz-range-thumb { width: 28px; height: 44px; background: transparent; border: none; }
+
+.ew-calc-axis {
+  position: absolute; left: 0; right: 0; bottom: 10px;
+  height: 1px; background: rgba(255, 255, 255, 0.16); pointer-events: none;
+}
+.ew-calc-handle {
+  position: absolute; bottom: 1px; margin-left: -2px;
+  width: 4px; height: 19px; background: #CD040B;
+  pointer-events: none;
+  transition: height 140ms ease, bottom 140ms ease;
+}
+.ew-calc-plotwrap:hover .ew-calc-handle,
+.ew-calc-plotwrap:focus-within .ew-calc-handle { height: 27px; bottom: -3px; }
+
+/* The hint sits at the far end of the audience row. */
+.ew-calc-hint {
+  margin-left: auto;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.13em;
+  text-transform: uppercase; color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+@media (max-width: 560px) { .ew-calc-hint { display: none; } }
+
 .ew-calc-plot { display: block; width: 100%; height: 64px; overflow: visible; }
 
 /* Rail + axis ticks, so the 500K–100M span is legible without dragging. */
-.ew-calc-rail { position: relative; padding-bottom: 18px; }
-.ew-calc-ticks { position: absolute; left: 0; right: 0; top: 18px; height: 15px; pointer-events: none; }
+.ew-calc-ticks { position: relative; height: 16px; margin-top: 2px; pointer-events: none; }
 .ew-calc-tick { position: absolute; top: 0; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 3px; }
 .ew-calc-tick i { display: block; width: 1px; height: 4px; background: rgba(255,255,255,0.3); }
 .ew-calc-tick em { font-style: normal; font-family: var(--font-mono), ui-monospace, monospace; font-size: 11.5px; font-weight: 500; letter-spacing: 0.06em; color: rgba(255,255,255,0.58); white-space: nowrap; }
