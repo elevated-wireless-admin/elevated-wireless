@@ -3,7 +3,6 @@
 import { CSSProperties } from "react";
 import { tokens as t } from "@/lib/tokens";
 import { EWMark, Reveal } from "./primitives";
-import { RevenueCalculator } from "./RevenueCalculator";
 
 // ————————————————————————————————————————————————
 // University Hero — navy, matches homepage type system,
@@ -67,8 +66,6 @@ export function UniversityHero() {
               </p>
 
             </div>
-
-            <RevenueCalculator variant="university" className="ew-calc-card" />
 
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
                 <a

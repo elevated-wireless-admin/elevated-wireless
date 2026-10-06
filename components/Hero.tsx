@@ -4,7 +4,6 @@ import { CSSProperties, ReactNode } from "react";
 import { tokens as t } from "@/lib/tokens";
 import { asset } from "@/lib/asset";
 import { Em, Eyebrow, Knockout, Reveal, Spine } from "./primitives";
-import { RevenueCalculator } from "./RevenueCalculator";
 
 export type HeroVariant = "gradient" | "band";
 
@@ -146,7 +145,7 @@ function Shell({ children, style }: { children: ReactNode; style?: CSSProperties
 // ————————————————————————————————————————————————
 function GradientHero() {
   return (
-    <Shell style={{ padding: "104px 56px 120px", minHeight: 720 }}>
+    <Shell style={{ padding: "104px 56px 104px", minHeight: 600 }}>
       <HeroPhoto
         scrim={`linear-gradient(to bottom,
           rgba(0,0,0,0.74) 0%,
@@ -165,8 +164,6 @@ function GradientHero() {
                 <Headline />
                 <Subline onPhoto />
               </div>
-
-              <RevenueCalculator variant="home" className="ew-calc-card" />
 
               <CTA />
             </div>
@@ -262,7 +259,7 @@ function BandHero() {
         style={{
           background: t.base,
           color: t.paper,
-          padding: "84px 56px 110px",
+          padding: "72px 56px 88px",
           position: "relative",
           overflow: "hidden",
         }}
@@ -272,9 +269,6 @@ function BandHero() {
           <Reveal>
             <div style={{ maxWidth: 1240, margin: "0 auto" }}>
               <div className="ew-hero-center">
-                {/* No eyebrow here: the calculator carries its own heading and
-                    the two read as a stutter. */}
-                <RevenueCalculator variant="home" className="ew-calc-card" />
                 <CTA />
               </div>
             </div>

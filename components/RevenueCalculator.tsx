@@ -6,7 +6,14 @@ import { tokens as t } from "@/lib/tokens";
 // ————————————————————————————————————————————————
 // Revenue calculator — the proposal finance slide, live.
 // audience × conversion × $10/sub/mo royalty → monthly + yearly.
-// Paper card on the navy hero; mounts on home + /universities.
+//
+// The control is a plotted value curve rather than a bare slider: dragging
+// moves a marker along the whole 500K–100M ladder, so a partner sees what the
+// deal is worth at every other audience size, not only their own. That is the
+// argument the decks make, made interactive.
+//
+// Note the curve bends because the audience ladder below is log-spaced, not
+// because the model is non-linear — royalty is strictly linear in audience.
 // ————————————————————————————————————————————————
 
 // Audience stops, 500K → 100M. Log-ish ladder, densest in the
@@ -20,6 +27,7 @@ function buildStops(): number[] {
   return stops;
 }
 const STOPS = buildStops();
+const LAST = STOPS.length - 1;
 
 function nearestStopIndex(value: number): number {
   let best = 0;
@@ -31,6 +39,10 @@ function nearestStopIndex(value: number): number {
 
 const ROYALTY = 10;
 const CONV_PRESETS = [0.5, 1, 2];
+
+// Ticks a partner can locate themselves against. Kept to five so the axis
+// stays readable at the narrow end of the band.
+const TICKS = [1_000_000, 10_000_000, 25_000_000, 50_000_000, 100_000_000];
 
 function fmtInt(n: number): string {
   return Math.round(n).toLocaleString("en-US");
@@ -48,6 +60,12 @@ function fmtMoney(n: number): string {
 
 function fmtConv(c: number): string {
   return trimZeros(c.toFixed(1)) + "%";
+}
+
+function fmtShort(n: number): string {
+  if (n >= 1e6) return trimZeros((n / 1e6).toFixed(n % 1e6 === 0 ? 0 : 1)) + "M";
+  if (n >= 1e3) return Math.round(n / 1e3) + "K";
+  return String(n);
 }
 
 // Eased count-up toward a moving target; snaps when motion is reduced.
@@ -81,12 +99,45 @@ function useCountUp(target: number, duration = 550): number {
   return value;
 }
 
+// ——— Curve geometry ———————————————————————————
+// Plotted in a fixed viewBox and stretched by the SVG, so the shape is
+// computed once per conversion rate rather than on every resize.
+const VB_W = 1000;
+const VB_H = 118;
+const PAD_TOP = 6;
+
+function curvePoints(conv: number): string {
+  // Revenue is linear in audience, so normalising against the top stop makes
+  // the path independent of conversion — but we recompute anyway to keep the
+  // relationship explicit for anyone reading this later.
+  const max = STOPS[LAST] * (conv / 100) * ROYALTY;
+  const pts: string[] = [];
+  for (let i = 0; i <= LAST; i += 3) {
+    const x = (i / LAST) * VB_W;
+    const rev = STOPS[i] * (conv / 100) * ROYALTY;
+    const y = VB_H - (rev / max) * (VB_H - PAD_TOP) - 2;
+    pts.push(`${x.toFixed(1)} ${y.toFixed(1)}`);
+  }
+  const xEnd = VB_W;
+  const yEnd = VB_H - (VB_H - PAD_TOP) - 2;
+  pts.push(`${xEnd} ${yEnd.toFixed(1)}`);
+  return pts.map((p, i) => (i === 0 ? "M" : "L") + p).join(" ");
+}
+
+function markerAt(idx: number, conv: number): { x: number; y: number } {
+  const max = STOPS[LAST] * (conv / 100) * ROYALTY;
+  const rev = STOPS[idx] * (conv / 100) * ROYALTY;
+  return {
+    x: (idx / LAST) * VB_W,
+    y: VB_H - (rev / max) * (VB_H - PAD_TOP) - 2,
+  };
+}
+
 type Variant = "home" | "university";
 
 const VARIANTS: Record<
   Variant,
   {
-    title: string;
     audienceLabel: string;
     convLabel: string;
     noun: string;
@@ -96,16 +147,17 @@ const VARIANTS: Record<
   }
 > = {
   home: {
-    title: "What's your audience worth?",
     audienceLabel: "Your audience",
     convLabel: "Share who sign up",
     noun: "people",
+    // NOTE: this is the number a first-time visitor sees before touching
+    // anything — 10M at 1% opens the page on $1M a month. Lower it here if
+    // the opening figure should read more conservative.
     defaultAudience: 10_000_000,
     ctaLabel: "Get your exact number",
     ctaHref: "#partner",
   },
   university: {
-    title: "What's your fan base worth?",
     audienceLabel: "Fans & alumni",
     convLabel: "Fans who sign up",
     noun: "fans",
@@ -154,17 +206,16 @@ export function RevenueCalculator({
   const monthly = useCountUp(subs * ROYALTY);
   const yearly = monthly * 12;
 
-  const label: CSSProperties = {
-    fontFamily: t.sans,
-    fontSize: 13,
-    opacity: 0.62,
-    margin: 0,
-  };
-  const readout: CSSProperties = {
-    fontFamily: t.sans,
-    fontSize: 15,
+  const path = curvePoints(conv);
+  const marker = markerAt(audienceIdx, conv);
+
+  const microLabel: CSSProperties = {
+    fontFamily: t.mono,
+    fontSize: 10.5,
     fontWeight: 600,
-    fontVariantNumeric: "tabular-nums",
+    letterSpacing: "0.17em",
+    textTransform: "uppercase",
+    color: t.metal,
     margin: 0,
   };
 
@@ -174,147 +225,183 @@ export function RevenueCalculator({
       style={{
         background: t.paper,
         color: t.ink,
-        borderTop: `3px solid ${t.metalBright}`,
-        padding: "24px 26px 22px",
+        borderTop: `3px solid ${t.accent}`,
+        padding: "28px 32px 26px",
         display: "flex",
         flexDirection: "column",
-        gap: 16,
+        gap: 20,
       }}
     >
-      <h2
-        style={{
-          fontFamily: t.sansDisplay,
-          fontSize: 21,
-          lineHeight: 1.15,
-          fontWeight: 500,
-          letterSpacing: "-0.015em",
-          margin: 0,
-          textWrap: "balance",
-        } as CSSProperties}
-      >
-        {brand ? `What are ${brand} fans worth?` : v.title}
-      </h2>
-
-      {/* Audience */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-          <label htmlFor={`ew-audience-${variant}`} style={label}>
-            {brand ? `${brand} fans` : v.audienceLabel}
-          </label>
-          <p style={readout}>{fmtInt(audience)}</p>
-        </div>
-        <input
-          id={`ew-audience-${variant}`}
-          className="ew-range"
-          type="range"
-          min={0}
-          max={STOPS.length - 1}
-          step={1}
-          value={audienceIdx}
-          aria-valuetext={`${fmtInt(audience)} ${v.noun}`}
-          onChange={(e) => setAudienceIdx(Number(e.target.value))}
-        />
-      </div>
-
-      {/* Conversion */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-          <label htmlFor={`ew-conv-${variant}`} style={label}>
-            {v.convLabel}
-          </label>
-          <p style={readout}>{fmtConv(conv)}</p>
-        </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          {CONV_PRESETS.map((c) => {
-            const active = Math.abs(conv - c) < 0.001;
-            return (
-              <button
-                key={c}
-                type="button"
-                aria-pressed={active}
-                onClick={() => setConv(c)}
-                style={{
-                  flex: 1,
-                  padding: "7px 0",
-                  fontFamily: t.mono,
-                  fontSize: 11,
-                  letterSpacing: "0.14em",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  background: active ? t.base : "transparent",
-                  color: active ? t.paper : t.ink,
-                  border: `1px solid ${active ? t.base : t.line}`,
-                }}
-              >
-                {fmtConv(c)}
-              </button>
-            );
-          })}
-        </div>
-        <input
-          id={`ew-conv-${variant}`}
-          className="ew-range"
-          type="range"
-          min={0.1}
-          max={5}
-          step={0.1}
-          value={conv}
-          aria-valuetext={fmtConv(conv)}
-          onChange={(e) => setConv(Number(e.target.value))}
-        />
-      </div>
-
-      {/* Result */}
-      <div style={{ borderTop: `1px solid ${t.line}`, paddingTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
-        <p style={{ ...label, fontVariantNumeric: "tabular-nums" }}>
-          {fmtInt(subs)} subscribers × ${ROYALTY} monthly royalty
-        </p>
-        {[
-          { value: monthly, suffix: "/ month" },
-          { value: yearly, suffix: "/ year" },
-        ].map(({ value, suffix }) => (
-          <div
-            key={suffix}
-            style={{ display: "flex", alignItems: "baseline", gap: 10, whiteSpace: "nowrap" }}
+      {/* ——— Crown: the figure leads, the inputs follow ——— */}
+      <div className="ew-calc-crown">
+        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <p
+            className="ew-num-shimmer"
+            style={{
+              fontFamily: t.sansDisplay,
+              fontSize: "clamp(38px, 5.4vw, 58px)",
+              lineHeight: 1,
+              fontWeight: 500,
+              letterSpacing: "-0.028em",
+              fontVariantNumeric: "tabular-nums",
+              margin: 0,
+            }}
           >
-            <span
-              className="ew-num-shimmer"
-              style={{
-                fontFamily: t.sansDisplay,
-                fontSize: "clamp(30px, 2.6vw, 36px)",
-                lineHeight: 1.05,
-                fontWeight: 500,
-                letterSpacing: "-0.02em",
-                fontVariantNumeric: "tabular-nums",
-              }}
-            >
-              {fmtMoney(value)}
-            </span>
-            <span style={{ fontFamily: t.sans, fontSize: 14, opacity: 0.55 }}>{suffix}</span>
-          </div>
-        ))}
+            {fmtMoney(monthly)}
+          </p>
+          <p style={{ ...microLabel, letterSpacing: "0.14em" }}>
+            per month at {fmtConv(conv)} of {fmtInt(audience)}{" "}
+            {brand ? `${brand} fans` : v.noun}
+          </p>
+        </div>
+        <div className="ew-calc-yearly">
+          <p style={microLabel}>Per year</p>
+          <p
+            style={{
+              fontFamily: t.sansDisplay,
+              fontSize: 21,
+              fontWeight: 500,
+              letterSpacing: "-0.018em",
+              fontVariantNumeric: "tabular-nums",
+              margin: 0,
+            }}
+          >
+            {fmtMoney(yearly)}
+          </p>
+        </div>
       </div>
 
-      <a
-        href={v.ctaHref}
+      {/* ——— The plot, and the rail that drives it ——— */}
+      <div>
+        <svg
+          className="ew-calc-plot"
+          viewBox={`0 0 ${VB_W} ${VB_H}`}
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path d={`${path} L${VB_W} ${VB_H} L0 ${VB_H} Z`} fill="rgba(205,4,11,0.09)" />
+          <path
+            d={path}
+            fill="none"
+            stroke={t.accent}
+            strokeWidth={2}
+            vectorEffect="non-scaling-stroke"
+          />
+          <line
+            x1={marker.x}
+            x2={marker.x}
+            y1={marker.y}
+            y2={VB_H}
+            stroke={t.ink}
+            strokeWidth={1}
+            vectorEffect="non-scaling-stroke"
+          />
+          <circle cx={marker.x} cy={marker.y} r={4.5} fill={t.accent} />
+        </svg>
+
+        <div className="ew-calc-rail">
+          <input
+            id={`ew-audience-${variant}`}
+            className="ew-range"
+            type="range"
+            min={0}
+            max={LAST}
+            step={1}
+            value={audienceIdx}
+            style={{ ["--pct" as string]: `${(audienceIdx / LAST) * 100}%` }}
+            aria-label={brand ? `${brand} fans` : v.audienceLabel}
+            aria-valuetext={`${fmtInt(audience)} ${v.noun}`}
+            onChange={(e) => setAudienceIdx(Number(e.target.value))}
+          />
+          <div className="ew-calc-ticks" aria-hidden="true">
+            {TICKS.map((n) => (
+              <div
+                key={n}
+                className="ew-calc-tick"
+                style={{ left: `${(nearestStopIndex(n) / LAST) * 100}%` }}
+              >
+                <i />
+                <em>{fmtShort(n)}</em>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ——— Conversion, disclosure, CTA ——— */}
+      <div className="ew-calc-foot">
+        <div className="ew-calc-conv">
+          <span style={microLabel}>{v.convLabel}</span>
+          <div style={{ display: "flex", gap: 6 }}>
+            {CONV_PRESETS.map((c) => {
+              const active = Math.abs(conv - c) < 0.001;
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => setConv(c)}
+                  style={{
+                    padding: "6px 13px",
+                    fontFamily: t.mono,
+                    fontSize: 10.5,
+                    letterSpacing: "0.12em",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    background: active ? t.base : "transparent",
+                    color: active ? t.paper : t.ink,
+                    border: `1px solid ${active ? t.base : t.line}`,
+                  }}
+                >
+                  {fmtConv(c)}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <a
+          href={v.ctaHref}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
+            fontFamily: t.mono,
+            fontSize: 11.5,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            fontWeight: 600,
+            color: t.base,
+            borderBottom: `1px solid ${t.metal}`,
+            paddingBottom: 4,
+          }}
+        >
+          {v.ctaLabel}
+          <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1 }}>
+            →
+          </span>
+        </a>
+      </div>
+
+      {/* The number above is a model, and says so. Cheap to print, and it is
+          the difference between a projection and a promise in a first
+          meeting. */}
+      <p
         style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 10,
-          alignSelf: "flex-start",
           fontFamily: t.mono,
-          fontSize: 12,
-          letterSpacing: "0.22em",
-          textTransform: "uppercase",
-          fontWeight: 600,
-          color: t.base,
-          borderBottom: `1px solid ${t.metal}`,
-          paddingBottom: 4,
+          fontSize: 10.5,
+          letterSpacing: "0.04em",
+          color: t.metal,
+          margin: 0,
+          borderTop: `1px solid ${t.line}`,
+          paddingTop: 12,
         }}
       >
-        {v.ctaLabel}
-        <span aria-hidden="true" style={{ fontSize: 14, opacity: 0.8, lineHeight: 1, fontWeight: 500 }}>→</span>
-      </a>
+        Illustrative. Assumes a ${ROYALTY} monthly royalty per subscriber and{" "}
+        {fmtInt(subs)} subscribers at {fmtConv(conv)} sign-up. Your terms are set in the
+        agreement.
+      </p>
     </div>
   );
 }
