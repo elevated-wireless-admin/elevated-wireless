@@ -57,12 +57,12 @@ a { color: inherit; text-decoration: none; }
 .ew-range { appearance: none; -webkit-appearance: none; width: 100%; height: 22px; margin: 0; padding: 0; background: transparent; cursor: pointer; display: block; position: relative; z-index: 2; }
 .ew-range:focus { outline: none; }
 .ew-range:focus-visible { outline: 2px solid #CD040B; outline-offset: 5px; }
-.ew-range::-webkit-slider-runnable-track { height: 3px; background: linear-gradient(to right, #FFFFFF 0 var(--pct, 0%), rgba(255,255,255,0.18) var(--pct, 0%) 100%); }
-.ew-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 3px; height: 21px; margin-top: -9px; background: #CD040B; border: none; border-radius: 0; transition: height 140ms ease, margin-top 140ms ease; }
-.ew-range:hover::-webkit-slider-thumb, .ew-range:active::-webkit-slider-thumb { height: 27px; margin-top: -12px; }
-.ew-range::-moz-range-track { height: 3px; background: rgba(255,255,255,0.18); }
-.ew-range::-moz-range-progress { height: 3px; background: #FFFFFF; }
-.ew-range::-moz-range-thumb { width: 3px; height: 21px; background: #CD040B; border: none; border-radius: 0; }
+.ew-range::-webkit-slider-runnable-track { height: 1px; background: rgba(255,255,255,0.16); }
+.ew-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 3px; height: 18px; margin-top: -8.5px; background: #CD040B; border: none; border-radius: 0; transition: height 140ms ease, margin-top 140ms ease; }
+.ew-range:hover::-webkit-slider-thumb, .ew-range:active::-webkit-slider-thumb { height: 24px; margin-top: -11.5px; }
+.ew-range::-moz-range-track { height: 1px; background: rgba(255,255,255,0.16); }
+.ew-range::-moz-range-progress { height: 1px; background: rgba(255,255,255,0.16); }
+.ew-range::-moz-range-thumb { width: 3px; height: 18px; background: #CD040B; border: none; border-radius: 0; }
 
 /* The plotted value curve. Stretched by the SVG, so it spans the card at
    any width without the path being recomputed on resize. */
@@ -76,14 +76,17 @@ a { color: inherit; text-decoration: none; }
 .ew-calc-tick em { font-style: normal; font-family: var(--font-mono), ui-monospace, monospace; font-size: 9.5px; letter-spacing: 0.06em; color: rgba(255,255,255,0.5); white-space: nowrap; }
 
 /* Crown: the figure leads, the year sits beside it rather than beneath. */
-.ew-calc-crown { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
-.ew-calc-yearly { text-align: right; display: flex; flex-direction: column; gap: 3px; }
+.ew-calc-crown { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; }
+.ew-calc-fig { display: flex; align-items: baseline; gap: 9px; }
+/* Label and live value above the rail, so the number being dragged is
+   named rather than inferred from the axis ticks. */
+.ew-calc-rowtop { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 10px; }
 .ew-calc-foot { display: flex; justify-content: space-between; align-items: center; gap: 22px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.13); padding-top: 18px; }
 .ew-calc-conv { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 
 /* The calculator's own band, beneath the hero. */
 .ew-calc-frame { display: flex; flex-direction: column; gap: 16px; margin-bottom: 34px; }
-.ew-calc-card { width: 100%; max-width: 1100px; }
+.ew-calc-card { width: 100%; max-width: 900px; }
 
 /* Hero: proposition only. The calculator moved out into its own band, so this
    stack is copy and a CTA. */
@@ -136,8 +139,7 @@ a { color: inherit; text-decoration: none; }
 
   /* Crown and foot are two-up rows on desktop; on a phone they stack and the
      year figure stops being right-aligned against nothing. */
-  .ew-calc-crown { gap: 14px; }
-  .ew-calc-yearly { text-align: left; }
+  .ew-calc-crown { gap: 6px; }
   .ew-calc-foot { align-items: flex-start; gap: 16px; }
   .ew-calc-plot { height: 52px; }
 

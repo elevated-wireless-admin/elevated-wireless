@@ -247,9 +247,12 @@ export function RevenueCalculator({
         gap: 18,
       }}
     >
-      {/* ——— Crown: the figure leads, the inputs follow ——— */}
+      {/* ——— Crown ———
+          Monthly and yearly stack as a pair. They used to sit at opposite
+          corners of the panel with the full width empty between them, which
+          was most of why it read wide and underfilled. */}
       <div className="ew-calc-crown">
-        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+        <div className="ew-calc-fig">
           <p
             className="ew-num-shimmer"
             style={{
@@ -264,30 +267,53 @@ export function RevenueCalculator({
           >
             {fmtMoney(monthly)}
           </p>
-          <p style={{ ...microLabel, letterSpacing: "0.14em" }}>
-            per month at {fmtConv(conv)} of {fmtInt(audience)}{" "}
-            {brand ? `${brand} fans` : v.noun}
-          </p>
+          <span style={microLabel}>per month</span>
         </div>
-        <div className="ew-calc-yearly">
-          <p style={microLabel}>Per year</p>
+        <div className="ew-calc-fig">
           <p
             style={{
               fontFamily: t.sansDisplay,
-              fontSize: 21,
+              fontSize: 22,
+              lineHeight: 1,
               fontWeight: 500,
               letterSpacing: "-0.018em",
               fontVariantNumeric: "tabular-nums",
               margin: 0,
+              color: "rgba(255,255,255,0.88)",
             }}
           >
             {fmtMoney(yearly)}
           </p>
+          <span style={microLabel}>per year</span>
         </div>
       </div>
 
-      {/* ——— The plot, and the rail that drives it ——— */}
+      {/* ——— The plot, and the rail that drives it ———
+          The rail carries its own label and live readout, matching the
+          conversion control below it. Without them the only clue that the
+          thing being dragged was audience size was the axis ticks, which is
+          not a connection a visitor should have to make. */}
       <div>
+        <div className="ew-calc-rowtop">
+          <label htmlFor={`ew-audience-${variant}`} style={microLabel}>
+            {brand ? `${brand} fans` : v.audienceLabel}
+          </label>
+          <p
+            style={{
+              fontFamily: t.sansDisplay,
+              fontSize: 17,
+              fontWeight: 500,
+              letterSpacing: "-0.012em",
+              fontVariantNumeric: "tabular-nums",
+              margin: 0,
+            }}
+          >
+            {fmtInt(audience)}{" "}
+            <span style={{ ...microLabel, display: "inline", fontSize: 10.5 }}>
+              {brand ? "fans" : v.noun}
+            </span>
+          </p>
+        </div>
         <svg
           className="ew-calc-plot"
           viewBox={`0 0 ${VB_W} ${VB_H}`}
@@ -295,7 +321,7 @@ export function RevenueCalculator({
           aria-hidden="true"
           focusable="false"
         >
-          <path d={`${path} L${VB_W} ${VB_H} L0 ${VB_H} Z`} fill="rgba(205,4,11,0.22)" />
+          <path d={`${path} L${VB_W} ${VB_H} L0 ${VB_H} Z`} fill="rgba(205,4,11,0.12)" />
           <path
             d={path}
             fill="none"
@@ -308,7 +334,7 @@ export function RevenueCalculator({
             x2={marker.x}
             y1={marker.y}
             y2={VB_H}
-            stroke="rgba(255,255,255,0.55)"
+            stroke="rgba(255,255,255,0.42)"
             strokeWidth={1}
             vectorEffect="non-scaling-stroke"
           />
