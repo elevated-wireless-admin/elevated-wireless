@@ -150,16 +150,14 @@ const VARIANTS: Record<
   {
     audienceLabel: string;
     convLabel: string;
-    noun: string;
     defaultAudience: number;
     ctaLabel: string;
     ctaHref: string;
   }
 > = {
   home: {
-    audienceLabel: "Your audience",
+    audienceLabel: "Audience size",
     convLabel: "Share who sign up",
-    noun: "fans",
     // NOTE: this is the number a first-time visitor sees before touching
     // anything — 10M at 1% opens the page on $1M a month. Lower it here if
     // the opening figure should read more conservative.
@@ -170,7 +168,6 @@ const VARIANTS: Record<
   university: {
     audienceLabel: "Fans & alumni",
     convLabel: "Fans who sign up",
-    noun: "fans",
     defaultAudience: 2_000_000,
     ctaLabel: "Get your exact number",
     ctaHref:
@@ -296,7 +293,7 @@ export function RevenueCalculator({
       <div>
         <div className="ew-calc-rowtop">
           <label htmlFor={`ew-audience-${variant}`} style={microLabel}>
-            {brand ? `${brand} fans` : v.audienceLabel}
+            {brand ? `${brand} fans` : v.audienceLabel}:
           </label>
           <p
             style={{
@@ -308,10 +305,7 @@ export function RevenueCalculator({
               margin: 0,
             }}
           >
-            {fmtInt(audience)}{" "}
-            <span style={{ ...microLabel, display: "inline", fontSize: 10.5 }}>
-              {brand ? "fans" : v.noun}
-            </span>
+            {fmtInt(audience)}
           </p>
         </div>
         <svg
@@ -352,7 +346,7 @@ export function RevenueCalculator({
             value={audienceIdx}
             style={{ ["--pct" as string]: `${(audienceIdx / LAST) * 100}%` }}
             aria-label={brand ? `${brand} fans` : v.audienceLabel}
-            aria-valuetext={`${fmtInt(audience)} ${v.noun}`}
+            aria-valuetext={fmtInt(audience)}
             onChange={(e) => setAudienceIdx(Number(e.target.value))}
           />
           <div className="ew-calc-ticks" aria-hidden="true">

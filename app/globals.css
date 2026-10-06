@@ -80,7 +80,7 @@ a { color: inherit; text-decoration: none; }
 .ew-calc-fig { display: flex; align-items: baseline; gap: 9px; }
 /* Label and live value above the rail, so the number being dragged is
    named rather than inferred from the axis ticks. */
-.ew-calc-rowtop { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 10px; }
+.ew-calc-rowtop { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
 .ew-calc-foot { display: flex; justify-content: space-between; align-items: center; gap: 22px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.13); padding-top: 18px; }
 .ew-calc-conv { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 
